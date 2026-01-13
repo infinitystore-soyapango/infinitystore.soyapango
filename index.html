@@ -3,228 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infinity Store | Accesorios en Soyapango</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Infinity Store | Tecnología y Servicio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- ESTILOS GENERALES --- */
+        /* --- VARIABLES Y RESET --- */
         :root {
-            --color-principal: #111; /* Negro elegante */
-            --color-secundario: #D4AF37; /* Dorado para detalles */
-            --color-fondo: #f9f9f9;
-            --color-texto: #333;
+            --primary: #2563eb; /* Azul intenso moderno */
+            --dark: #0f172a;    /* Azul muy oscuro (casi negro) */
+            --light: #f8fafc;   /* Blanco humo */
+            --gray: #64748b;
+            --glass: rgba(255, 255, 255, 0.95);
+            --shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--color-texto);
-            background-color: var(--color-fondo);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden; /* Evita scroll horizontal en móviles */
         }
 
-        a { text-decoration: none; color: inherit; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
 
-        /* --- BARRA DE NAVEGACIÓN --- */
+        /* --- CLASES DE ANIMACIÓN (JS) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HEADER Y NAV MÓVIL --- */
         header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: fixed;
-            width: 100%;
             top: 0;
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(10px); /* Efecto vidrio */
+            border-bottom: 1px solid rgba(0,0,0,0.05);
             z-index: 1000;
+            padding: 15px 0;
         }
 
         .nav-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 5%;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
         .logo img {
-            height: 50px; /* Ajusta este tamaño según tu logo */
+            height: 45px;
             width: auto;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 20px;
-        }
-
-        nav a {
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            transition: color 0.3s;
-        }
-
-        nav a:hover { color: var(--color-secundario); }
-
-        /* --- SECCIÓN PRESENTACIÓN (HERO) --- */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); /* Imagen de fondo genérica de accesorios */
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-        }
-
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--color-secundario);
-            color: white;
-            padding: 10px 30px;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .btn:hover { background: #b5952f; }
-
-        /* --- SECCIÓN QUÉ VENDEMOS --- */
-        .productos {
-            padding: 80px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 40px;
-            color: var(--color-principal);
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
             display: block;
-            width: 50px;
-            height: 3px;
-            background: var(--color-secundario);
-            margin: 10px auto 0;
         }
 
-        .lista-productos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        /* Menú Desktop */
+        .nav-links {
+            display: flex;
             gap: 30px;
         }
 
-        .producto-card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--dark);
         }
 
-        .producto-card:hover { transform: translateY(-5px); }
-
-        .producto-icon {
-            font-size: 2.5rem;
-            color: var(--color-secundario);
-            margin-bottom: 15px;
+        .nav-links a:hover {
+            color: var(--primary);
         }
 
-        .producto-card h3 { margin-bottom: 10px; }
-
-        /* --- SECCIÓN CONTACTO Y REDES --- */
-        .contacto {
-            background: #222;
-            color: white;
-            padding: 80px 5%;
-        }
-
-        .contacto-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
-        }
-
-        .info-col h3 {
-            color: var(--color-secundario);
-            margin-bottom: 20px;
+        /* Botón Hamburguesa (Oculto en PC) */
+        .hamburger {
+            display: none;
+            cursor: pointer;
             font-size: 1.5rem;
+            color: var(--dark);
         }
 
-        .contact-item {
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            /* Degradado moderno sobre imagen */
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(37, 99, 235, 0.8)), 
+                        url('https://images.unsplash.com/photo-1592434134753-a70baf7979d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-attachment: fixed; /* Efecto Parallax */
+        }
+
+        .hero-content {
+            color: white;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
             margin-bottom: 20px;
-            font-size: 1.1rem;
+            line-height: 1.1;
         }
 
-        .contact-item i {
-            margin-right: 15px;
-            color: var(--color-secundario);
-            font-size: 1.2rem;
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            font-weight: 300;
         }
 
-        .social-icons {
+        .btn-primary {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.6);
+        }
+
+        /* --- GRID DE SERVICIOS --- */
+        .section {
+            padding: 100px 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .section-header p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Rebote suave */
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+            border-color: rgba(37, 99, 235, 0.2);
+        }
+
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            background: #eff6ff; /* Azul muy pálido */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .card h3 { margin-bottom: 10px; color: var(--dark); }
+        .card p { color: var(--gray); font-size: 0.95rem; }
+
+        /* --- CONTACTO Y FOOTER --- */
+        .contact-section {
+            background: #f1f5f9;
+        }
+
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .contact-btn {
+            display: block;
+            margin-top: 15px;
+            padding: 12px;
+            background: var(--dark);
+            color: white;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .contact-btn.whatsapp { background: #25D366; }
+        .contact-btn:hover { opacity: 0.9; }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .footer-socials {
             margin-top: 20px;
         }
 
-        .social-icons a {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 45px;
-            height: 45px;
-            border: 2px solid var(--color-secundario);
-            border-radius: 50%;
-            margin-right: 10px;
-            color: white;
-            transition: 0.3s;
+        .footer-socials a {
+            font-size: 1.5rem;
+            margin: 0 15px;
+            color: var(--gray);
         }
 
-        .social-icons a:hover {
-            background: var(--color-secundario);
-            color: white;
-        }
+        .footer-socials a:hover { color: white; }
 
-        /* --- FOOTER --- */
-        footer {
-            background: #111;
-            color: #888;
-            text-align: center;
-            padding: 20px;
-            border-top: 1px solid #333;
-        }
-
-        /* --- RESPONSIVE --- */
+        /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2rem; }
-            .nav-container { flex-direction: column; }
-            nav ul { margin-top: 15px; }
+            .hamburger { display: block; } /* Mostrar botón menú */
+
+            .nav-links {
+                position: absolute;
+                top: 70px; /* Debajo del header */
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 20px;
+                border-bottom: 1px solid #ddd;
+                /* Ocultar por defecto */
+                transform: translateY(-150%);
+                transition: transform 0.4s ease;
+                z-index: 999;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            }
+
+            .nav-links.active {
+                transform: translateY(0); /* Mostrar menú */
+            }
+
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            .section { padding: 60px 5%; }
         }
     </style>
 </head>
@@ -233,91 +296,121 @@
     <header>
         <div class="nav-container">
             <div class="logo">
-                <img src="infinity1.png" alt="Logo Infinity Store">
+                <img src="infinity1.png" alt="Infinity Store Logo">
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#productos">Colección</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </nav>
+            
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#inicio" onclick="toggleMenu()">Inicio</a></li>
+                <li><a href="#servicios" onclick="toggleMenu()">Servicios</a></li>
+                <li><a href="#contacto" onclick="toggleMenu()">Contacto</a></li>
+            </ul>
         </div>
     </header>
 
     <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h1>Bienvenido a Infinity Store</h1>
-            <p>El toque final para tu estilo. Los mejores accesorios, ahora en Soyapango.</p>
-            <a href="https://wa.me/50373222201" class="btn"> <i class="fab fa-whatsapp"></i> Comprar Ahora</a>
+        <div class="hero-content reveal">
+            <h1>Tecnología al <br> alcance de tus manos</h1>
+            <p>Servicio técnico profesional y accesorios premium en Soyapango.</p>
+            <a href="https://wa.me/50373222201" class="btn-primary">
+                <i class="fab fa-whatsapp"></i> Cotizar Ahora
+            </a>
         </div>
     </section>
 
-    <section id="productos" class="productos">
-        <h2 class="section-title">Nuestra Colección</h2>
-        <p style="margin-bottom: 40px; color: #666;">Descubre la variedad de accesorios que tenemos para ti.</p>
-        
-        <div class="lista-productos">
-            <div class="producto-card">
-                <div class="producto-icon"><i class="fa-solid fa-gem"></i></div>
-                <h3>Joyería Fina</h3>
-                <p>Anillos, collares y pulseras en acero inoxidable y fantasía fina.</p>
+    <section id="servicios" class="section">
+        <div class="section-header reveal">
+            <h2>Nuestros Servicios</h2>
+            <p>Soluciones rápidas y efectivas para tus dispositivos.</p>
+        </div>
+
+        <div class="grid-container">
+            <div class="card reveal">
+                <div class="icon-box"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                <h3>Reparación Celular</h3>
+                <p>Cambio de displays, baterías y diagnósticos avanzados.</p>
             </div>
-            <div class="producto-card">
-                <div class="producto-icon"><i class="fa-solid fa-glasses"></i></div>
-                <h3>Lentes de Sol</h3>
-                <p>Variedad de estilos para protegerte del sol con elegancia.</p>
+            <div class="card reveal">
+                <div class="icon-box"><i class="fa-solid fa-headset"></i></div>
+                <h3>Audio Premium</h3>
+                <p>Audífonos Bluetooth, diademas y parlantes de alta fidelidad.</p>
             </div>
-            <div class="producto-card">
-                <div class="producto-icon"><i class="fa-solid fa-stopwatch"></i></div>
-                <h3>Relojes</h3>
-                <p>Relojes digitales y analógicos para damas y caballeros.</p>
+            <div class="card reveal">
+                <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
+                <h3>Carga Rápida</h3>
+                <p>Cables certificados y cubos de carga para todas las marcas.</p>
             </div>
-            <div class="producto-card">
-                <div class="producto-icon"><i class="fa-solid fa-hat-cowboy"></i></div>
-                <h3>Accesorios Varios</h3>
-                <p>Gorras, carteras, cinturones y mucho más.</p>
+            <div class="card reveal">
+                <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>Protección</h3>
+                <p>Amplia variedad de cases y vidrios templados o hidrogel.</p>
             </div>
         </div>
     </section>
 
-    <section id="contacto" class="contacto">
-        <div class="contacto-container">
-            <div class="info-col">
-                <h3>Contáctanos</h3>
-                <p style="margin-bottom: 20px;">Estamos ubicados en Soyapango. Haz tus pedidos o consultas directamente:</p>
-                
-                <div class="contact-item">
-                    <i class="fab fa-whatsapp"></i>
-                    <a href="https://wa.me/50373222201" target="_blank">+503 7322 2201</a>
-                </div>
+    <section id="contacto" class="section contact-section">
+        <div class="section-header reveal">
+            <h2>Contáctanos</h2>
+            <p>Estamos listos para atenderte</p>
+        </div>
 
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:infinitystoreacs@gmail.com">infinitystoreacs@gmail.com</a>
-                </div>
-
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Soyapango, El Salvador</span>
-                </div>
+        <div class="contact-wrapper reveal">
+            <div class="contact-box">
+                <i class="fab fa-whatsapp" style="font-size: 2rem; color: #25D366; margin-bottom: 10px;"></i>
+                <h3>WhatsApp</h3>
+                <p>Respuesta inmediata</p>
+                <a href="https://wa.me/50373222201" class="contact-btn whatsapp">+503 7322 2201</a>
             </div>
 
-            <div class="info-col">
-                <h3>Síguenos</h3>
-                <p>No te pierdas nuestros nuevos ingresos y ofertas exclusivas en nuestras redes.</p>
-                <div class="social-icons">
-                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
-                </div>
+            <div class="contact-box">
+                <i class="fas fa-envelope" style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;"></i>
+                <h3>Correo</h3>
+                <p>Consultas empresariales</p>
+                <a href="mailto:infinitystoreacs@gmail.com" class="contact-btn">Enviar Correo</a>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 Infinity Store. Todos los derechos reservados.</p>
+        <div class="logo-footer">
+            <h3>Infinity Store</h3>
+            <p style="font-size: 0.8rem; opacity: 0.6;">Soyapango, El Salvador</p>
+        </div>
+        <div class="footer-socials">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">&copy; 2024 Infinity Store. Todos los derechos reservados.</p>
     </footer>
 
+    <script>
+        // 1. Lógica del Menú Móvil
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-links');
+            nav.classList.toggle('active');
+        }
+
+        // 2. Animaciones al hacer Scroll (Intersection Observer)
+        // Esto hace que los elementos aparezcan suavemente cuando bajas la página
+        const observerOptions = {
+            threshold: 0.1 // Se activa cuando el 10% del elemento es visible
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active'); // Agrega la clase que hace visible el elemento
+                }
+            });
+        }, observerOptions);
+
+        // Seleccionamos todos los elementos con la clase 'reveal'
+        const elementsToReveal = document.querySelectorAll('.reveal');
+        elementsToReveal.forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
