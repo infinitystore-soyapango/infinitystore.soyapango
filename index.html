@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infinity Store | Reparaciones y Accesorios</title>
+    <title>Infinity Store | Unicentro Soyapango</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- VARIABLES DE COLOR BASADAS EN EL LOGO --- */
+        /* --- COLORES BASADOS EN EL LOGO --- */
         :root {
-            --bg-dark: #121212;       /* Fondo negro profundo */
-            --bg-card: #1E1E1E;       /* Fondo un poco más claro para tarjetas */
-            --accent-yellow: #FFEB3B; /* Amarillo neón vibrante */
-            --accent-blue: #4FC3F7;   /* Celeste claro */
-            --text-light: #E0E0E0;    /* Texto blanco/gris claro */
+            --bg-dark: #000000;       /* Fondo negro puro como el logo */
+            --bg-card: #111111;       /* Gris muy oscuro para contraste */
+            --accent-yellow: #FFFF00; /* Amarillo neón del círculo exterior */
+            --accent-blue: #00BFFF;   /* Celeste de "Reparaciones" */
+            --text-light: #E0E0E0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,7 +32,7 @@
 
         /* --- HEADER --- */
         header { 
-            background: rgba(18, 18, 18, 0.95); /* Negro con transparencia */
+            background: rgba(0, 0, 0, 0.95);
             padding: 15px 5%; 
             display: flex; 
             justify-content: space-between; 
@@ -43,90 +43,83 @@
             z-index: 1000; 
             backdrop-filter: blur(10px);
         }
-        .logo img { height: 60px; width: auto; } /* Ajusta según tu imagen real */
+        .logo img { height: 60px; width: auto; }
         
         .whatsapp-top { 
             background: var(--accent-yellow); 
-            color: var(--bg-dark); /* Texto oscuro sobre fondo amarillo */
+            color: black; 
             padding: 10px 20px; 
             border-radius: 30px; 
             font-weight: 800; 
             font-size: 0.9rem; 
-            box-shadow: 0 0 10px rgba(255, 235, 59, 0.4); /* Glow amarillo */
+            box-shadow: 0 0 15px rgba(255, 255, 0, 0.4);
         }
-        .whatsapp-top:hover { transform: scale(1.05); background: #FFF; }
+        .whatsapp-top:hover { transform: scale(1.05); background: white; }
 
-        /* --- HERO / PRESENTACIÓN --- */
+        /* --- HERO --- */
         .hero { 
             padding: 80px 20px; 
             text-align: center; 
-            /* Fondo oscuro con un degradado sutil */
-            background: linear-gradient(135deg, #000000 0%, #222222 100%);
-            border-bottom: 1px solid #333;
+            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(20,20,20,1) 100%);
         }
         .hero h1 { 
-            font-size: 2.5rem; 
+            font-size: 2.2rem; 
             color: var(--accent-yellow); 
             margin-bottom: 15px; 
-            text-shadow: 0 0 15px rgba(255, 235, 59, 0.5);
+            text-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
         }
         .hero p { 
-            font-size: 1.2rem; 
+            font-size: 1.1rem; 
             color: var(--accent-blue);
             font-weight: 600;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        /* --- SECCIONES GENERALES --- */
+        /* --- SECCIONES --- */
         .section { padding: 50px 5%; max-width: 1200px; margin: 0 auto; }
         
         .section-title { 
             margin-bottom: 30px; 
-            font-size: 1.8rem; 
+            font-size: 1.6rem; 
             color: var(--accent-yellow);
-            display: flex;
-            align-items: center;
-        }
-        .section-title::before {
-            content: '';
-            display: inline-block;
-            width: 5px;
-            height: 30px;
-            background: var(--accent-blue);
-            margin-right: 15px;
-            box-shadow: 0 0 8px var(--accent-blue);
+            border-left: 5px solid var(--accent-blue);
+            padding-left: 15px;
         }
 
-        /* --- OFRECEMOS (Estilo Lista con Iconos) --- */
+        /* --- SERVICIOS (Grid Actualizado) --- */
         .ofrecemos-list { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 20px; 
         }
         .ofrecemos-item { 
             background: var(--bg-card); 
-            padding: 20px; 
+            padding: 25px; 
             border-radius: 12px; 
-            display: flex; 
-            align-items: center; 
-            border: 1px solid #333;
+            border: 1px solid #222;
+            transition: 0.3s;
+        }
+        .ofrecemos-item:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
         }
         .ofrecemos-item i { 
             color: var(--accent-blue); 
-            font-size: 1.5rem; 
-            margin-right: 15px; 
-            text-shadow: 0 0 5px var(--accent-blue);
+            font-size: 2rem; 
+            margin-bottom: 15px; 
+            display: block;
         }
-        .ofrecemos-item span { font-weight: 600; }
+        .ofrecemos-item h3 { font-size: 1.1rem; color: white; margin-bottom: 10px; }
+        .ofrecemos-item p { font-size: 0.9rem; color: #aaa; }
 
-        /* --- CONTENEDOR DE SCROLL (CARRUSEL) --- */
-        .scroll-wrapper { position: relative; }
+        /* --- SCROLL DE PRODUCTOS --- */
         .scroll-container {
             display: flex;
             overflow-x: auto;
             gap: 20px;
             padding: 20px 5px;
             scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
         }
         .scroll-container::-webkit-scrollbar { display: none; }
 
@@ -136,71 +129,48 @@
             border-radius: 15px;
             overflow: hidden;
             flex-shrink: 0;
-            border: 2px solid transparent; /* Borde transparente por defecto */
-            transition: 0.3s;
+            border: 1px solid #333;
         }
-        /* Efecto neón al pasar el mouse sobre un producto */
-        .product-card:hover {
-            border-color: var(--accent-yellow);
-            box-shadow: 0 0 15px rgba(255, 235, 59, 0.3);
-        }
-        .product-card img { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid #333; }
-        .product-card p { 
-            padding: 15px; 
-            text-align: center; 
-            font-weight: 700; 
-            font-size: 1rem; 
-            color: var(--text-light);
-        }
+        .product-card img { width: 100%; height: 220px; object-fit: cover; }
+        .product-card p { padding: 15px; text-align: center; font-weight: 700; color: white; }
 
-        /* --- CONTACTO --- */
+        /* --- CONTACTO / UBICACIÓN --- */
         .contacto { 
-            background: #000; /* Negro puro para el footer */
+            background: #050505; 
             padding: 60px 20px; 
             text-align: center; 
-            border-top: 3px solid var(--accent-blue);
+            border-top: 2px solid var(--accent-blue);
         }
-        .contacto h2 { color: var(--accent-yellow); margin-bottom: 30px; font-size: 2rem; }
-        
-        .contact-links a { 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 15px auto;
-            font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 400px;
-            padding: 10px;
+        .address-box {
+            background: #111;
+            padding: 20px;
             border-radius: 10px;
-            background: var(--bg-card);
+            margin: 20px auto;
+            max-width: 600px;
+            border: 1px solid var(--accent-yellow);
         }
-        .contact-links a i { margin-right: 15px; font-size: 1.5rem; }
-        .wa-link i { color: #25D366; }
-        .email-link i { color: var(--accent-blue); }
-        .location-link i { color: red; }
-
-        .socials { margin-top: 40px; }
+        .contact-links a { 
+            display: block;
+            margin: 15px auto;
+            font-size: 1.1rem;
+            color: white;
+            max-width: 400px;
+            padding: 12px;
+            border-radius: 10px;
+            background: #222;
+        }
+        .contact-links a:hover { background: #333; }
         .socials a { 
             display: inline-flex;
             justify-content: center; align-items: center;
-            width: 50px; height: 50px;
-            margin: 0 10px; 
-            font-size: 1.5rem; color: var(--bg-dark);
+            width: 45px; height: 45px;
+            margin: 10px; 
+            font-size: 1.3rem; color: black;
             background: var(--accent-yellow);
             border-radius: 50%;
-            box-shadow: 0 0 10px rgba(255, 235, 59, 0.5);
         }
-        .socials a:hover { background: white; transform: rotate(360deg); }
 
-        /* FOOTER */
-        footer { text-align: center; padding: 30px; background: #000; color: #777; border-top: 1px solid #222; }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 1.8rem; }
-            .whatsapp-top span { display: none; } /* Oculta texto en móvil, solo deja icono */
-            .whatsapp-top { padding: 10px; border-radius: 50%; }
-        }
+        footer { text-align: center; padding: 30px; background: black; color: #555; font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -208,67 +178,87 @@
     <header>
         <div class="logo"><img src="infinity1.png" alt="Infinity Store Logo"></div>
         <a href="https://wa.me/50373222201" class="whatsapp-top">
-            <i class="fab fa-whatsapp"></i> <span>Cotizar Ahora</span>
+            <i class="fab fa-whatsapp"></i> Cotizar
         </a>
     </header>
 
     <section class="hero">
-        <h1>Infinity Store Soyapango</h1>
-        <p>Reparaciones Profesionales y Accesorios con Estilo</p>
+        <h1>Infinity Store</h1>
+        <p>Reparaciones Confiables y Accesorios en Unicentro Soyapango</p>
     </section>
 
     <section class="section">
-        <h2 class="section-title">¿Qué Ofrecemos?</h2>
+        <h2 class="section-title">Nuestros Servicios</h2>
         <div class="ofrecemos-list">
-            <div class="ofrecemos-item"><i class="fas fa-screwdriver-wrench"></i> <span>Servicio Técnico Celular Garantizado</span></div>
-            <div class="ofrecemos-item"><i class="fas fa-mobile-screen"></i> <span>Repuestos de Calidad</span></div>
-            <div class="ofrecemos-item"><i class="fas fa-shield-alt"></i> <span>Diagnóstico Profesional</span></div>
-            <div class="ofrecemos-item"><i class="fas fa-bolt"></i> <span>Entrega Rápida en la zona</span></div>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2 class="section-title" style="color: var(--accent-blue);">Anillos y Cachuchas</h2>
-        <div class="scroll-wrapper">
-            <div class="scroll-container" id="scroll1">
-                <div class="product-card"><img src="image1.png" alt="Producto"> <p>Anillo Estilo 1</p></div>
-                <div class="product-card"><img src="image2.png" alt="Producto"> <p>Anillo Estilo 2</p></div>
-                <div class="product-card"><img src="image3.png" alt="Producto"> <p>Anillo Estilo 3</p></div>
-                <div class="product-card"><img src="image4.png" alt="Producto"> <p>Anillo Estilo 4</p></div>
-                <div class="product-card"><img src="image5.png" alt="Producto"> <p>Anillo Estilo 5</p></div>
-                <div class="product-card"><img src="image6.png" alt="Producto"> <p>Cachucha Modelo A</p></div>
-                <div class="product-card"><img src="image7.png" alt="Producto"> <p>Cachucha Modelo B</p></div>
-                <div class="product-card"><img src="image8.png" alt="Producto"> <p>Cachucha Modelo C</p></div>
-                <div class="product-card"><img src="image9.png" alt="Producto"> <p>Cachucha Modelo D</p></div>
-                <div class="product-card"><img src="image10.png" alt="Producto"> <p>Cachucha Modelo E</p></div>
+            <div class="ofrecemos-item">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Cambio de Pantallas</h3>
+                <p>Instalación profesional de displays y pantallas para tu celular.</p>
+            </div>
+            <div class="ofrecemos-item">
+                <i class="fas fa-tools"></i>
+                <h3>Reparaciones Confiables</h3>
+                <p>Solución a fallas de carga, baterías, micrófonos y más.</p>
+            </div>
+            <div class="ofrecemos-item">
+                <i class="fas fa-unlock-alt"></i>
+                <h3>Liberaciones y Desbloqueos</h3>
+                <p>Servicio técnico para desbloquear tu dispositivo móvil.</p>
+            </div>
+            <div class="ofrecemos-item">
+                <i class="fas fa-headphones"></i>
+                <h3>Venta de Accesorios</h3>
+                <p>Audífonos Bluetooth, fundas, protectores, cables y gadgets.</p>
             </div>
         </div>
     </section>
 
     <section class="section">
-        <h2 class="section-title">Tecnología y Accesorios</h2>
-        <div class="scroll-wrapper">
-            <div class="scroll-container" id="scroll2">
-                <div class="product-card"><img src="image11.png" alt="Tech"> <p>Audífonos Pro</p></div>
-                <div class="product-card"><img src="image12.png" alt="Tech"> <p>Cargador Rápido</p></div>
-                <div class="product-card"><img src="image13.png" alt="Tech"> <p>Smartwatch</p></div>
-                <div class="product-card"><img src="image14.png" alt="Tech"> <p>Case Protector</p></div>
-                <div class="product-card"><img src="image15.png" alt="Tech"> <p>Cable USB-C</p></div>
-                <div class="product-card"><img src="image16.png" alt="Tech"> <p>Vidrio Templado</p></div>
-                <div class="product-card"><img src="image17.png" alt="Tech"> <p>Audífonos Gamer</p></div>
-                <div class="product-card"><img src="image18.png" alt="Tech"> <p>Power Bank</p></div>
-                <div class="product-card"><img src="image19.png" alt="Tech"> <p>Parlante Bluetooth</p></div>
-                <div class="product-card"><img src="image20.png" alt="Tech"> <p>Soporte Celular</p></div>
-            </div>
+        <h2 class="section-title" style="color: white;">Anillos y Cachuchas</h2>
+        <div class="scroll-container" id="scroll1">
+            <div class="product-card"><img src="image1.png" alt="Anillo"> <p>Anillo Estilo 1</p></div>
+            <div class="product-card"><img src="image2.png" alt="Anillo"> <p>Anillo Estilo 2</p></div>
+            <div class="product-card"><img src="image3.png" alt="Anillo"> <p>Anillo Estilo 3</p></div>
+            <div class="product-card"><img src="image4.png" alt="Anillo"> <p>Anillo Estilo 4</p></div>
+            <div class="product-card"><img src="image5.png" alt="Anillo"> <p>Anillo Estilo 5</p></div>
+            <div class="product-card"><img src="image6.png" alt="Cachucha"> <p>Gorra Urbana</p></div>
+            <div class="product-card"><img src="image7.png" alt="Cachucha"> <p>Gorra Plana</p></div>
+            <div class="product-card"><img src="image8.png" alt="Cachucha"> <p>Gorra Deportiva</p></div>
+            <div class="product-card"><img src="image9.png" alt="Cachucha"> <p>Gorra Fashion</p></div>
+            <div class="product-card"><img src="image10.png" alt="Cachucha"> <p>Gorra Básica</p></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title" style="color: white;">Gadgets y Tecnología</h2>
+        <div class="scroll-container" id="scroll2">
+            <div class="product-card"><img src="image11.png" alt="Tech"> <p>Audífonos Bluetooth</p></div>
+            <div class="product-card"><img src="image12.png" alt="Tech"> <p>Cargador Rápido</p></div>
+            <div class="product-card"><img src="image13.png" alt="Tech"> <p>Smartwatch</p></div>
+            <div class="product-card"><img src="image14.png" alt="Tech"> <p>Funda Protectora</p></div>
+            <div class="product-card"><img src="image15.png" alt="Tech"> <p>Cable USB Tipo C</p></div>
+            <div class="product-card"><img src="image16.png" alt="Tech"> <p>Vidrio Templado</p></div>
+            <div class="product-card"><img src="image17.png" alt="Tech"> <p>Parlante Portátil</p></div>
+            <div class="product-card"><img src="image18.png" alt="Tech"> <p>Power Bank</p></div>
+            <div class="product-card"><img src="image19.png" alt="Tech"> <p>Soporte Auto</p></div>
+            <div class="product-card"><img src="image20.png" alt="Tech"> <p>Memoria USB</p></div>
         </div>
     </section>
 
     <section class="contacto" id="contacto">
         <h2>Contáctanos</h2>
+        <p style="color: #888; margin-bottom: 20px;">Cotiza tu repuesto enviándonos el modelo exacto.</p>
+        
+        <div class="address-box">
+            <i class="fas fa-map-marker-alt" style="color: var(--accent-yellow); font-size: 1.5rem;"></i>
+            <p style="margin-top: 10px; font-weight: 600; color: white;">
+                Frente a Pollo Campero de Unicentro Soyapango,<br>San Salvador
+            </p>
+        </div>
+
         <div class="contact-links">
-            <a href="https://wa.me/50373222201" class="wa-link"><i class="fab fa-whatsapp"></i> +503 7322 2201</a>
-            <a href="mailto:infinitystoreacs@gmail.com" class="email-link"><i class="fas fa-envelope"></i> infinitystoreacs@gmail.com</a>
-            <a href="#" class="location-link"><i class="fas fa-map-marker-alt"></i> Soyapango, El Salvador</a>
+            <a href="https://wa.me/50373222201"><i class="fab fa-whatsapp" style="color: #25D366;"></i> +503 7322 2201</a>
+            <a href="mailto:infinitystoreacs@gmail.com"><i class="fas fa-envelope" style="color: var(--accent-blue);"></i> infinitystoreacs@gmail.com</a>
         </div>
         
         <div class="socials">
@@ -279,39 +269,33 @@
     </section>
 
     <footer>
-        <p>&copy; 2024 Infinity Store - El estilo que no tiene fin.</p>
+        <p>&copy; 2024 Infinity Store. Expertos en Reparaciones y Accesorios.</p>
     </footer>
 
     <script>
-        // Script para el scroll automático (se detiene al tocar/pasar mouse)
-        function autoScroll(id, speed) {
+        // Scroll Automático Lento
+        function autoScroll(id) {
             const container = document.getElementById(id);
             let scrollAmount = 0;
-            let step = 1; // Velocidad del movimiento
+            let step = 1; 
 
             function scrollStep() {
                 container.scrollLeft += step;
-                scrollAmount += step;
-                // Si llega al final, reinicia suavemente
                 if (container.scrollLeft >= (container.scrollWidth - container.clientWidth)) {
                     container.scrollLeft = 0;
                 }
             }
 
-            // Velocidad: cuanto menor el número, más rápido se ejecuta el paso
-            let interval = setInterval(scrollStep, speed);
+            let interval = setInterval(scrollStep, 35); // Velocidad suave
 
-            // Pausar interacción
             container.addEventListener('mouseover', () => clearInterval(interval));
             container.addEventListener('touchstart', () => clearInterval(interval));
-            // Reanudar interacción
-            container.addEventListener('mouseout', () => interval = setInterval(scrollStep, speed));
-            container.addEventListener('touchend', () => interval = setInterval(scrollStep, speed));
+            container.addEventListener('mouseout', () => interval = setInterval(scrollStep, 35));
+            container.addEventListener('touchend', () => interval = setInterval(scrollStep, 35));
         }
 
-        // Iniciamos los scrolls con diferentes velocidades para que se vea dinámico
-        autoScroll('scroll1', 35); // Velocidad normal
-        autoScroll('scroll2', 30); // Un poco más rápido
+        autoScroll('scroll1');
+        autoScroll('scroll2');
     </script>
 
 </body>
