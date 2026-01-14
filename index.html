@@ -3,445 +3,315 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infinity Store | Tecnología y Estilo en Soyapango</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Infinity Store | Reparaciones y Accesorios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* --- VARIABLES DE COLOR BASADAS EN EL LOGO --- */
         :root {
-            --primary: #2563eb;
-            --secondary: #1e40af;
-            --accent: #25D366;
-            --dark: #111827;
-            --light: #f3f4f6;
-            --white: #ffffff;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --bg-dark: #121212;       /* Fondo negro profundo */
+            --bg-card: #1E1E1E;       /* Fondo un poco más claro para tarjetas */
+            --accent-yellow: #FFEB3B; /* Amarillo neón vibrante */
+            --accent-blue: #4FC3F7;   /* Celeste claro */
+            --text-light: #E0E0E0;    /* Texto blanco/gris claro */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--light); color: #333; overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--bg-dark); 
+            color: var(--text-light); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
 
-        /* HEADER */
+        h1, h2, h3 { text-transform: uppercase; letter-spacing: 1px; }
+        a { text-decoration: none; transition: 0.3s; }
+
+        /* --- HEADER --- */
         header { 
-            background: var(--white); 
+            background: rgba(18, 18, 18, 0.95); /* Negro con transparencia */
             padding: 15px 5%; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); 
+            border-bottom: 2px solid var(--accent-yellow);
             position: sticky; 
             top: 0; 
             z-index: 1000; 
+            backdrop-filter: blur(10px);
         }
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 10px; }
-        .logo i { color: var(--primary); }
-        .nav-btn { background: var(--dark); color: white; padding: 10px 20px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; }
-        .nav-btn:hover { background: var(--primary); transform: translateY(-2px); }
+        .logo img { height: 60px; width: auto; } /* Ajusta según tu imagen real */
+        
+        .whatsapp-top { 
+            background: var(--accent-yellow); 
+            color: var(--bg-dark); /* Texto oscuro sobre fondo amarillo */
+            padding: 10px 20px; 
+            border-radius: 30px; 
+            font-weight: 800; 
+            font-size: 0.9rem; 
+            box-shadow: 0 0 10px rgba(255, 235, 59, 0.4); /* Glow amarillo */
+        }
+        .whatsapp-top:hover { transform: scale(1.05); background: #FFF; }
 
-        /* HERO SECTION */
+        /* --- HERO / PRESENTACIÓN --- */
         .hero { 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://source.unsplash.com/random/1600x900/?technology,store'); 
-            background-size: cover; 
-            background-position: center; 
-            color: white; 
             padding: 80px 20px; 
             text-align: center; 
-            min-height: 60vh;
+            /* Fondo oscuro con un degradado sutil */
+            background: linear-gradient(135deg, #000000 0%, #222222 100%);
+            border-bottom: 1px solid #333;
+        }
+        .hero h1 { 
+            font-size: 2.5rem; 
+            color: var(--accent-yellow); 
+            margin-bottom: 15px; 
+            text-shadow: 0 0 15px rgba(255, 235, 59, 0.5);
+        }
+        .hero p { 
+            font-size: 1.2rem; 
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        /* --- SECCIONES GENERALES --- */
+        .section { padding: 50px 5%; max-width: 1200px; margin: 0 auto; }
+        
+        .section-title { 
+            margin-bottom: 30px; 
+            font-size: 1.8rem; 
+            color: var(--accent-yellow);
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
         }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; }
-        .hero p { font-size: 1.1rem; max-width: 600px; margin-bottom: 30px; opacity: 0.9; }
-        .cta-button { 
-            background: var(--primary); 
-            color: white; 
-            padding: 12px 30px; 
-            border-radius: 30px; 
-            font-weight: bold; 
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); 
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 30px;
+            background: var(--accent-blue);
+            margin-right: 15px;
+            box-shadow: 0 0 8px var(--accent-blue);
         }
-        .cta-button:hover { background: var(--white); color: var(--primary); }
 
-        /* SECCIONES GENERALES */
-        .section { padding: 60px 5%; max-width: 1300px; margin: 0 auto; }
-        .section-title { 
-            text-align: center; 
-            margin-bottom: 40px; 
+        /* --- OFRECEMOS (Estilo Lista con Iconos) --- */
+        .ofrecemos-list { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 20px; 
         }
-        .section-title h2 { font-size: 2rem; color: var(--dark); margin-bottom: 10px; }
-        .section-title span { display: block; width: 60px; height: 4px; background: var(--primary); margin: 0 auto; }
-
-        /* SERVICIOS (GRID) */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .service-card { 
-            background: var(--white); 
-            padding: 30px; 
-            border-radius: 15px; 
-            box-shadow: var(--shadow); 
-            text-align: center; 
-            transition: transform 0.3s ease;
-            border-bottom: 4px solid transparent;
+        .ofrecemos-item { 
+            background: var(--bg-card); 
+            padding: 20px; 
+            border-radius: 12px; 
+            display: flex; 
+            align-items: center; 
+            border: 1px solid #333;
         }
-        .service-card:hover { transform: translateY(-10px); border-bottom: 4px solid var(--primary); }
-        .service-icon { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
-        .service-card h3 { margin-bottom: 15px; color: var(--dark); }
-        .service-card p { font-size: 0.9rem; color: #666; }
+        .ofrecemos-item i { 
+            color: var(--accent-blue); 
+            font-size: 1.5rem; 
+            margin-right: 15px; 
+            text-shadow: 0 0 5px var(--accent-blue);
+        }
+        .ofrecemos-item span { font-weight: 600; }
 
-        /* CARRUSEL DE PRODUCTOS */
-        .scroll-wrapper { position: relative; margin-bottom: 20px; }
+        /* --- CONTENEDOR DE SCROLL (CARRUSEL) --- */
+        .scroll-wrapper { position: relative; }
         .scroll-container {
             display: flex;
             overflow-x: auto;
             gap: 20px;
             padding: 20px 5px;
             scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
         }
         .scroll-container::-webkit-scrollbar { display: none; }
 
         .product-card {
             min-width: 220px;
-            background: var(--white);
+            background: var(--bg-card);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-            position: relative;
+            flex-shrink: 0;
+            border: 2px solid transparent; /* Borde transparente por defecto */
+            transition: 0.3s;
         }
-        .product-card:hover { transform: scale(1.02); }
-        .img-container { height: 220px; overflow: hidden; position: relative; }
-        .product-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .product-card:hover img { transform: scale(1.1); }
+        /* Efecto neón al pasar el mouse sobre un producto */
+        .product-card:hover {
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 15px rgba(255, 235, 59, 0.3);
+        }
+        .product-card img { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid #333; }
+        .product-card p { 
+            padding: 15px; 
+            text-align: center; 
+            font-weight: 700; 
+            font-size: 1rem; 
+            color: var(--text-light);
+        }
+
+        /* --- CONTACTO --- */
+        .contacto { 
+            background: #000; /* Negro puro para el footer */
+            padding: 60px 20px; 
+            text-align: center; 
+            border-top: 3px solid var(--accent-blue);
+        }
+        .contacto h2 { color: var(--accent-yellow); margin-bottom: 30px; font-size: 2rem; }
         
-        .card-details { padding: 15px; text-align: center; }
-        .card-details h4 { font-size: 1rem; margin-bottom: 5px; color: var(--dark); }
-        .card-details .category { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block; }
-        .btn-buy { 
-            display: inline-block; 
-            padding: 8px 15px; 
-            border: 1px solid var(--primary); 
-            color: var(--primary); 
-            border-radius: 20px; 
-            font-size: 0.8rem; 
-            font-weight: 600; 
-        }
-        .btn-buy:hover { background: var(--primary); color: white; }
-
-        /* POR QUÉ ELEGIRNOS */
-        .features { background: var(--dark); color: white; padding: 50px 20px; }
-        .features-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; text-align: center; }
-        .feature-item { max-width: 300px; }
-        .feature-item i { color: var(--accent); font-size: 2rem; margin-bottom: 10px; }
-
-        /* UBICACIÓN */
-        .location-section { text-align: center; background: #eef2ff; }
-        .map-placeholder {
-            width: 100%;
-            height: 300px;
-            background: #ddd;
+        .contact-links a { 
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 15px;
-            color: #555;
+            margin: 15px auto;
             font-size: 1.2rem;
-            margin-top: 20px;
-            background-image: url('https://maps.googleapis.com/maps/api/staticmap?center=Soyapango&zoom=14&size=600x300&sensor=false'); /* Placeholder visual */
-            background-size: cover;
-            position: relative;
+            color: var(--text-light);
+            max-width: 400px;
+            padding: 10px;
+            border-radius: 10px;
+            background: var(--bg-card);
         }
-        .map-overlay { background: rgba(255,255,255,0.9); padding: 20px; border-radius: 10px; box-shadow: var(--shadow); }
+        .contact-links a i { margin-right: 15px; font-size: 1.5rem; }
+        .wa-link i { color: #25D366; }
+        .email-link i { color: var(--accent-blue); }
+        .location-link i { color: red; }
+
+        .socials { margin-top: 40px; }
+        .socials a { 
+            display: inline-flex;
+            justify-content: center; align-items: center;
+            width: 50px; height: 50px;
+            margin: 0 10px; 
+            font-size: 1.5rem; color: var(--bg-dark);
+            background: var(--accent-yellow);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 235, 59, 0.5);
+        }
+        .socials a:hover { background: white; transform: rotate(360deg); }
 
         /* FOOTER */
-        footer { background: var(--dark); color: #aaa; padding: 50px 5% 20px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 30px; }
-        .footer-col h3 { color: white; margin-bottom: 20px; font-size: 1.2rem; }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col ul li a:hover { color: var(--primary); padding-left: 5px; }
-        .social-links a { width: 40px; height: 40px; background: #333; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 10px; color: white; }
-        .social-links a:hover { background: var(--primary); }
-        .copyright { text-align: center; font-size: 0.85rem; }
+        footer { text-align: center; padding: 30px; background: #000; color: #777; border-top: 1px solid #222; }
 
-        /* RESPONSIVE */
+        /* Responsive */
         @media (max-width: 768px) {
             .hero h1 { font-size: 1.8rem; }
-            .service-card { padding: 20px; }
+            .whatsapp-top span { display: none; } /* Oculta texto en móvil, solo deja icono */
+            .whatsapp-top { padding: 10px; border-radius: 50%; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">
-            <i class="fas fa-infinity"></i> INFINITY STORE
-        </div>
-        <a href="#contacto" class="nav-btn"><i class="fab fa-whatsapp"></i> Contactar</a>
+        <div class="logo"><img src="infinity1.png" alt="Infinity Store Logo"></div>
+        <a href="https://wa.me/50373222201" class="whatsapp-top">
+            <i class="fab fa-whatsapp"></i> <span>Cotizar Ahora</span>
+        </a>
     </header>
 
     <section class="hero">
-        <h1>Tecnología & Estilo en Soyapango</h1>
-        <p>Expertos en reparación de celulares, venta de accesorios premium y las últimas tendencias en moda urbana.</p>
-        <a href="#productos" class="cta-button">Ver Catálogo</a>
+        <h1>Infinity Store Soyapango</h1>
+        <p>Reparaciones Profesionales y Accesorios con Estilo</p>
     </section>
 
     <section class="section">
-        <div class="section-title">
-            <h2>Nuestros Servicios</h2>
-            <span></span>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <i class="fas fa-mobile-alt service-icon"></i>
-                <h3>Soporte Técnico</h3>
-                <p>Reparación profesional de pantallas, pines de carga, baterías y software. Diagnóstico rápido y confiable.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-headphones-simple service-icon"></i>
-                <h3>Accesorios Premium</h3>
-                <p>Desde audífonos de alta fidelidad hasta smartwatches y cargadores certificados. Calidad garantizada.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-hat-cowboy-side service-icon"></i>
-                <h3>Moda Urbana</h3>
-                <p>Destaca tu estilo con nuestra colección exclusiva de gorras (cachuchas) y anillos de acero inoxidable.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-microchip service-icon"></i>
-                <h3>Venta de Repuestos</h3>
-                <p>Suministramos piezas de calidad para técnicos y usuarios finales. Pantallas, flex y componentes internos.</p>
-            </div>
+        <h2 class="section-title">¿Qué Ofrecemos?</h2>
+        <div class="ofrecemos-list">
+            <div class="ofrecemos-item"><i class="fas fa-screwdriver-wrench"></i> <span>Servicio Técnico Celular Garantizado</span></div>
+            <div class="ofrecemos-item"><i class="fas fa-mobile-screen"></i> <span>Repuestos de Calidad</span></div>
+            <div class="ofrecemos-item"><i class="fas fa-shield-alt"></i> <span>Diagnóstico Profesional</span></div>
+            <div class="ofrecemos-item"><i class="fas fa-bolt"></i> <span>Entrega Rápida en la zona</span></div>
         </div>
     </section>
 
-    <section class="section" id="productos">
-        <div class="section-title">
-            <h2>Estilo & Moda</h2>
-            <span></span>
-        </div>
-        <p style="text-align: center; margin-bottom: 20px; color: #666;">Descubre nuestra colección de anillos y gorras.</p>
-        
+    <section class="section">
+        <h2 class="section-title" style="color: var(--accent-blue);">Anillos y Cachuchas</h2>
         <div class="scroll-wrapper">
-            <div class="scroll-container" id="scrollModa">
-                <div class="product-card">
-                    <div class="img-container"><img src="1.jpeg" alt="Anillo"></div>
-                    <div class="card-details"><span class="category">Joyería</span><h4>Anillo Elegante</h4><a href="https://wa.me/50373222201?text=Me interesa el Anillo Elegante" class="btn-buy">Consultar</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="2.jpeg" alt="Anillo"></div>
-                    <div class="card-details"><span class="category">Joyería</span><h4>Anillo Moderno</h4><a href="https://wa.me/50373222201?text=Me interesa el Anillo Moderno" class="btn-buy">Consultar</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="3.jpeg" alt="Anillo"></div>
-                    <div class="card-details"><span class="category">Joyería</span><h4>Anillo Infinity</h4><a href="https://wa.me/50373222201?text=Me interesa el Anillo Infinity" class="btn-buy">Consultar</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="4.jpeg" alt="Anillo"></div>
-                    <div class="card-details"><span class="category">Joyería</span><h4>Anillo Minimalista</h4><a href="https://wa.me/50373222201?text=Me interesa el Anillo Minimalista" class="btn-buy">Consultar</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="5.jpeg" alt="Anillo"></div>
-                    <div class="card-details"><span class="category">Joyería</span><h4>Anillo Premium</h4><a href="https://wa.me/50373222201?text=Me interesa el Anillo Premium" class="btn-buy">Consultar</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="6.jpeg" alt="Gorra"></div>
-                    <div class="card-details"><span class="category">Moda</span><h4>Gorra Urbana</h4><a href="https://wa.me/50373222201?text=Me interesa la Gorra Urbana" class="btn-buy">Consultar</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="7.jpeg" alt="Gorra"></div>
-                    <div class="card-details"><span class="category">Moda</span><h4>Gorra Sport</h4><a href="https://wa.me/50373222201?text=Me interesa la Gorra Sport" class="btn-buy">Consultar</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="8.jpeg" alt="Gorra"></div>
-                    <div class="card-details"><span class="category">Moda</span><h4>Gorra Plana</h4><a href="https://wa.me/50373222201?text=Me interesa la Gorra Plana" class="btn-buy">Consultar</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="9.jpeg" alt="Gorra"></div>
-                    <div class="card-details"><span class="category">Moda</span><h4>Gorra Fashion</h4><a href="https://wa.me/50373222201?text=Me interesa la Gorra Fashion" class="btn-buy">Consultar</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="10.jpeg" alt="Gorra"></div>
-                    <div class="card-details"><span class="category">Moda</span><h4>Gorra Básica</h4><a href="https://wa.me/50373222201?text=Me interesa la Gorra Básica" class="btn-buy">Consultar</a></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="features">
-        <div class="section-title">
-            <h2 style="color: white;">¿Por qué elegirnos?</h2>
-        </div>
-        <div class="features-grid">
-            <div class="feature-item">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Garantía Real</h3>
-                <p>Todos nuestros trabajos y productos cuentan con respaldo y garantía.</p>
-            </div>
-            <div class="feature-item">
-                <i class="fas fa-bolt"></i>
-                <h3>Servicio Rápido</h3>
-                <p>Sabemos que tu tiempo vale. Ofrecemos diagnósticos y entregas ágiles.</p>
-            </div>
-            <div class="feature-item">
-                <i class="fas fa-hand-holding-dollar"></i>
-                <h3>Precios Justos</h3>
-                <p>La mejor calidad en Soyapango al precio más competitivo del mercado.</p>
+            <div class="scroll-container" id="scroll1">
+                <div class="product-card"><img src="image1.png" alt="Producto"> <p>Anillo Estilo 1</p></div>
+                <div class="product-card"><img src="image2.png" alt="Producto"> <p>Anillo Estilo 2</p></div>
+                <div class="product-card"><img src="image3.png" alt="Producto"> <p>Anillo Estilo 3</p></div>
+                <div class="product-card"><img src="image4.png" alt="Producto"> <p>Anillo Estilo 4</p></div>
+                <div class="product-card"><img src="image5.png" alt="Producto"> <p>Anillo Estilo 5</p></div>
+                <div class="product-card"><img src="image6.png" alt="Producto"> <p>Cachucha Modelo A</p></div>
+                <div class="product-card"><img src="image7.png" alt="Producto"> <p>Cachucha Modelo B</p></div>
+                <div class="product-card"><img src="image8.png" alt="Producto"> <p>Cachucha Modelo C</p></div>
+                <div class="product-card"><img src="image9.png" alt="Producto"> <p>Cachucha Modelo D</p></div>
+                <div class="product-card"><img src="image10.png" alt="Producto"> <p>Cachucha Modelo E</p></div>
             </div>
         </div>
     </section>
 
     <section class="section">
-        <div class="section-title">
-            <h2>Tecnología & Gadgets</h2>
-            <span></span>
-        </div>
+        <h2 class="section-title">Tecnología y Accesorios</h2>
         <div class="scroll-wrapper">
-            <div class="scroll-container" id="scrollTech">
-                <div class="product-card">
-                    <div class="img-container"><img src="11.jpeg" alt="Tech"></div>
-                    <div class="card-details"><span class="category">Audio</span><h4>Audífonos Pro</h4><a href="https://wa.me/50373222201" class="btn-buy">Ver Precio</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="12.jpeg" alt="Tech"></div>
-                    <div class="card-details"><span class="category">Carga</span><h4>Cable Rápido</h4><a href="https://wa.me/50373222201" class="btn-buy">Ver Precio</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="13.jpeg" alt="Tech"></div>
-                    <div class="card-details"><span class="category">Wearable</span><h4>Smartwatch</h4><a href="https://wa.me/50373222201" class="btn-buy">Ver Precio</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="14.jpeg" alt="Tech"></div>
-                    <div class="card-details"><span class="category">Protección</span><h4>Case Protector</h4><a href="https://wa.me/50373222201" class="btn-buy">Ver Precio</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="15.jpeg" alt="Tech"></div>
-                    <div class="card-details"><span class="category">Carga</span><h4>Cubo Original</h4><a href="https://wa.me/50373222201" class="btn-buy">Ver Precio</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="16.jpeg" alt="Tech"></div>
-                    <div class="card-details"><span class="category">Audio</span><h4>Diadema BT</h4><a href="https://wa.me/50373222201" class="btn-buy">Ver Precio</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="17.jpeg" alt="Tech"></div>
-                    <div class="card-details"><span class="category">Relojes</span><h4>Reloj Casual</h4><a href="https://wa.me/50373222201" class="btn-buy">Ver Precio</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="18.jpeg" alt="Tech"></div>
-                    <div class="card-details"><span class="category">Carga</span><h4>Cable Tipo C</h4><a href="https://wa.me/50373222201" class="btn-buy">Ver Precio</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="19.jpeg" alt="Tech"></div>
-                    <div class="card-details"><span class="category">Audio</span><h4>Mini Parlante</h4><a href="https://wa.me/50373222201" class="btn-buy">Ver Precio</a></div>
-                </div>
-                <div class="product-card">
-                    <div class="img-container"><img src="20.jpeg" alt="Tech"></div>
-                    <div class="card-details"><span class="category">Protección</span><h4>Vidrio Templado</h4><a href="https://wa.me/50373222201" class="btn-buy">Ver Precio</a></div>
-                </div>
+            <div class="scroll-container" id="scroll2">
+                <div class="product-card"><img src="image11.png" alt="Tech"> <p>Audífonos Pro</p></div>
+                <div class="product-card"><img src="image12.png" alt="Tech"> <p>Cargador Rápido</p></div>
+                <div class="product-card"><img src="image13.png" alt="Tech"> <p>Smartwatch</p></div>
+                <div class="product-card"><img src="image14.png" alt="Tech"> <p>Case Protector</p></div>
+                <div class="product-card"><img src="image15.png" alt="Tech"> <p>Cable USB-C</p></div>
+                <div class="product-card"><img src="image16.png" alt="Tech"> <p>Vidrio Templado</p></div>
+                <div class="product-card"><img src="image17.png" alt="Tech"> <p>Audífonos Gamer</p></div>
+                <div class="product-card"><img src="image18.png" alt="Tech"> <p>Power Bank</p></div>
+                <div class="product-card"><img src="image19.png" alt="Tech"> <p>Parlante Bluetooth</p></div>
+                <div class="product-card"><img src="image20.png" alt="Tech"> <p>Soporte Celular</p></div>
             </div>
         </div>
     </section>
 
-    <section class="section location-section" id="contacto">
-        <div class="section-title">
-            <h2>Visítanos en Soyapango</h2>
-            <span></span>
+    <section class="contacto" id="contacto">
+        <h2>Contáctanos</h2>
+        <div class="contact-links">
+            <a href="https://wa.me/50373222201" class="wa-link"><i class="fab fa-whatsapp"></i> +503 7322 2201</a>
+            <a href="mailto:infinitystoreacs@gmail.com" class="email-link"><i class="fas fa-envelope"></i> infinitystoreacs@gmail.com</a>
+            <a href="#" class="location-link"><i class="fas fa-map-marker-alt"></i> Soyapango, El Salvador</a>
         </div>
-        <p>Estamos listos para atenderte. Encuéntranos fácilmente.</p>
         
-        <div class="map-placeholder">
-            <div class="map-overlay">
-                <i class="fas fa-map-marker-alt" style="color: var(--primary); font-size: 2rem;"></i>
-                <p><strong>Infinity Store</strong><br>Soyapango, San Salvador</p>
-                <a href="https://waze.com/ul/..." target="_blank" style="color: var(--primary); font-size: 0.9rem; text-decoration: underline;">Abrir en Waze</a>
-            </div>
+        <div class="socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
         </div>
     </section>
 
     <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h3>Infinity Store</h3>
-                <p>Tu aliado en tecnología y estilo. Brindamos soluciones rápidas y productos de calidad garantizada en Soyapango.</p>
-            </div>
-            <div class="footer-col">
-                <h3>Enlaces Rápidos</h3>
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#productos">Catálogo</a></li>
-                    <li><a href="#">Reparaciones</a></li>
-                    <li><a href="#contacto">Ubicación</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Contacto</h3>
-                <ul>
-                    <li><i class="fab fa-whatsapp"></i> +503 7322 2201</li>
-                    <li><i class="fas fa-envelope"></i> infinitystoreacs@gmail.com</li>
-                    <li><i class="fas fa-clock"></i> Lun - Sáb: 8am - 6pm</li>
-                </ul>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2024 Infinity Store. Todos los derechos reservados.</p>
-        </div>
+        <p>&copy; 2024 Infinity Store - El estilo que no tiene fin.</p>
     </footer>
 
     <script>
-        // Lógica de Scroll Automático Suave
-        function setupAutoScroll(id, speed = 1) {
+        // Script para el scroll automático (se detiene al tocar/pasar mouse)
+        function autoScroll(id, speed) {
             const container = document.getElementById(id);
             let scrollAmount = 0;
-            let direction = 1; // 1 para derecha, -1 para izquierda
-            let animationFrame;
-            let isPaused = false;
+            let step = 1; // Velocidad del movimiento
 
-            function step() {
-                if (!isPaused) {
-                    // Mover el scroll
-                    container.scrollLeft += speed * direction;
-                    
-                    // Detectar si llegamos al final o al inicio para rebotar (o reiniciar)
-                    // Opción A: Rebote (Ping-pong)
-                    /*
-                    if (container.scrollLeft >= (container.scrollWidth - container.clientWidth)) {
-                        direction = -1;
-                    } else if (container.scrollLeft <= 0) {
-                        direction = 1;
-                    }
-                    */
-
-                    // Opción B: Reinicio al principio (Loop infinito visual simple)
-                    if (container.scrollLeft >= (container.scrollWidth - container.clientWidth)) {
-                        container.scrollLeft = 0;
-                    }
+            function scrollStep() {
+                container.scrollLeft += step;
+                scrollAmount += step;
+                // Si llega al final, reinicia suavemente
+                if (container.scrollLeft >= (container.scrollWidth - container.clientWidth)) {
+                    container.scrollLeft = 0;
                 }
-                animationFrame = requestAnimationFrame(step);
             }
 
-            // Iniciar animación
-            step();
+            // Velocidad: cuanto menor el número, más rápido se ejecuta el paso
+            let interval = setInterval(scrollStep, speed);
 
             // Pausar interacción
-            container.addEventListener('mouseenter', () => isPaused = true);
-            container.addEventListener('touchstart', () => isPaused = true);
-            
+            container.addEventListener('mouseover', () => clearInterval(interval));
+            container.addEventListener('touchstart', () => clearInterval(interval));
             // Reanudar interacción
-            container.addEventListener('mouseleave', () => isPaused = false);
-            container.addEventListener('touchend', () => isPaused = false);
+            container.addEventListener('mouseout', () => interval = setInterval(scrollStep, speed));
+            container.addEventListener('touchend', () => interval = setInterval(scrollStep, speed));
         }
 
-        // Inicializar los dos carruseles con velocidad diferente para dinamismo
-        document.addEventListener("DOMContentLoaded", () => {
-            setupAutoScroll('scrollModa', 1.5); // Velocidad normal
-            setupAutoScroll('scrollTech', 1.2); // Un poco más lento
-        });
+        // Iniciamos los scrolls con diferentes velocidades para que se vea dinámico
+        autoScroll('scroll1', 35); // Velocidad normal
+        autoScroll('scroll2', 30); // Un poco más rápido
     </script>
 
 </body>
