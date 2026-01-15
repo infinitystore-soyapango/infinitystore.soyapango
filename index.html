@@ -10,10 +10,10 @@
     <style>
         /* --- COLORES BASADOS EN EL LOGO --- */
         :root {
-            --bg-dark: #000000;       /* Fondo negro puro como el logo */
-            --bg-card: #111111;       /* Gris muy oscuro para contraste */
-            --accent-yellow: #FFFF00; /* Amarillo neón del círculo exterior */
-            --accent-blue: #00BFFF;   /* Celeste de "Reparaciones" */
+            --bg-dark: #000000;       
+            --bg-card: #111111;       
+            --accent-yellow: #FFFF00; 
+            --accent-blue: #00BFFF;   
             --text-light: #E0E0E0;
         }
 
@@ -29,6 +29,7 @@
 
         h1, h2, h3 { text-transform: uppercase; letter-spacing: 1px; }
         a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
 
         /* --- HEADER --- */
         header { 
@@ -48,17 +49,17 @@
         .whatsapp-top { 
             background: var(--accent-yellow); 
             color: black; 
-            padding: 10px 20px; 
+            padding: 8px 15px; 
             border-radius: 30px; 
             font-weight: 800; 
-            font-size: 0.9rem; 
+            font-size: 0.8rem; 
             box-shadow: 0 0 15px rgba(255, 255, 0, 0.4);
         }
         .whatsapp-top:hover { transform: scale(1.05); background: white; }
 
         /* --- HERO --- */
         .hero { 
-            padding: 80px 20px; 
+            padding: 60px 20px; 
             text-align: center; 
             background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(20,20,20,1) 100%);
         }
@@ -73,10 +74,133 @@
             color: var(--accent-blue);
             font-weight: 600;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0 auto 30px auto;
         }
 
-        /* --- SECCIONES --- */
+        /* BOTÓN DEL CATÁLOGO */
+        .btn-catalogo {
+            display: inline-block;
+            background: transparent;
+            border: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
+            padding: 12px 30px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
+            transition: 0.3s;
+        }
+        .btn-catalogo:hover {
+            background: var(--accent-blue);
+            color: black;
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
+        }
+
+        /* --- MODAL (VENTANA EMERGENTE) --- */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto; /* Permite scroll si es muy largo */
+        }
+        
+        .modal-content {
+            background-color: #1a1a1a;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid var(--accent-yellow);
+            width: 90%;
+            max-width: 800px;
+            border-radius: 10px;
+            position: relative;
+            animation: slideDown 0.4s;
+        }
+
+        @keyframes slideDown {
+            from { top: -100px; opacity: 0; }
+            to { top: 0; opacity: 1; }
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-btn:hover { color: var(--accent-yellow); }
+
+        .modal-header h2 {
+            color: var(--accent-yellow);
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        /* ACORDEÓN DE CATEGORÍAS */
+        .accordion-btn {
+            background-color: #222;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
+            transition: 0.4s;
+            border-bottom: 1px solid #333;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-btn:hover, .accordion-btn.active {
+            background-color: #333;
+            color: var(--accent-blue);
+        }
+        .accordion-btn:after {
+            content: '\002B'; /* Signo mas */
+            color: var(--accent-yellow);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .accordion-btn.active:after {
+            content: "\2212"; /* Signo menos */
+        }
+
+        .panel {
+            padding: 0 15px;
+            background-color: #111;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            border-left: 2px solid var(--accent-blue);
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        .price-table th, .price-table td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #333;
+        }
+        .price-table th { color: var(--accent-yellow); }
+        .price-table td { color: #ccc; }
+        .price-col { text-align: right; color: var(--accent-blue) !important; font-weight: bold; }
+
+        /* --- SECCIONES GENERALES --- */
         .section { padding: 50px 5%; max-width: 1200px; margin: 0 auto; }
         
         .section-title { 
@@ -87,7 +211,7 @@
             padding-left: 15px;
         }
 
-        /* --- SERVICIOS (Grid Actualizado) --- */
+        /* --- SERVICIOS --- */
         .ofrecemos-list { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
@@ -100,75 +224,27 @@
             border: 1px solid #222;
             transition: 0.3s;
         }
-        .ofrecemos-item:hover {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
-        }
-        .ofrecemos-item i { 
-            color: var(--accent-blue); 
-            font-size: 2rem; 
-            margin-bottom: 15px; 
-            display: block;
-        }
+        .ofrecemos-item:hover { border-color: var(--accent-blue); }
+        .ofrecemos-item i { color: var(--accent-blue); font-size: 2rem; margin-bottom: 15px; display: block; }
         .ofrecemos-item h3 { font-size: 1.1rem; color: white; margin-bottom: 10px; }
         .ofrecemos-item p { font-size: 0.9rem; color: #aaa; }
 
-        /* --- SCROLL DE PRODUCTOS --- */
+        /* --- SCROLL --- */
         .scroll-container {
-            display: flex;
-            overflow-x: auto;
-            gap: 20px;
-            padding: 20px 5px;
-            scrollbar-width: none;
+            display: flex; overflow-x: auto; gap: 20px; padding: 20px 5px; scrollbar-width: none;
         }
         .scroll-container::-webkit-scrollbar { display: none; }
-
         .product-card {
-            min-width: 220px;
-            background: var(--bg-card);
-            border-radius: 15px;
-            overflow: hidden;
-            flex-shrink: 0;
-            border: 1px solid #333;
+            min-width: 200px; background: var(--bg-card); border-radius: 15px; overflow: hidden; flex-shrink: 0; border: 1px solid #333;
         }
-        .product-card img { width: 100%; height: 220px; object-fit: cover; }
-        .product-card p { padding: 15px; text-align: center; font-weight: 700; color: white; }
+        .product-card img { width: 100%; height: 200px; object-fit: cover; }
+        .product-card p { padding: 10px; text-align: center; font-weight: 700; color: white; font-size: 0.9rem; }
 
-        /* --- CONTACTO / UBICACIÓN --- */
-        .contacto { 
-            background: #050505; 
-            padding: 60px 20px; 
-            text-align: center; 
-            border-top: 2px solid var(--accent-blue);
-        }
-        .address-box {
-            background: #111;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px auto;
-            max-width: 600px;
-            border: 1px solid var(--accent-yellow);
-        }
-        .contact-links a { 
-            display: block;
-            margin: 15px auto;
-            font-size: 1.1rem;
-            color: white;
-            max-width: 400px;
-            padding: 12px;
-            border-radius: 10px;
-            background: #222;
-        }
-        .contact-links a:hover { background: #333; }
-        .socials a { 
-            display: inline-flex;
-            justify-content: center; align-items: center;
-            width: 45px; height: 45px;
-            margin: 10px; 
-            font-size: 1.3rem; color: black;
-            background: var(--accent-yellow);
-            border-radius: 50%;
-        }
+        /* --- CONTACTO --- */
+        .contacto { background: #050505; padding: 60px 20px; text-align: center; border-top: 2px solid var(--accent-blue); }
+        .address-box { background: #111; padding: 20px; border-radius: 10px; margin: 20px auto; max-width: 600px; border: 1px solid var(--accent-yellow); }
+        .contact-links a { display: block; margin: 15px auto; font-size: 1.1rem; color: white; max-width: 400px; padding: 12px; border-radius: 10px; background: #222; }
+        .socials a { display: inline-flex; justify-content: center; align-items: center; width: 45px; height: 45px; margin: 10px; font-size: 1.3rem; color: black; background: var(--accent-yellow); border-radius: 50%; }
 
         footer { text-align: center; padding: 30px; background: black; color: #555; font-size: 0.8rem; }
     </style>
@@ -184,8 +260,90 @@
 
     <section class="hero">
         <h1>Infinity Store</h1>
-        <p>Reparaciones Confiables y Accesorios en Unicentro Soyapango</p>
+        <p>Expertos en Pantallas, Reparaciones y Accesorios en Soyapango</p>
+        
+        <button id="openCatalogBtn" class="btn-catalogo">
+            <i class="fas fa-list-ul"></i> Ver Catálogo de Pantallas
+        </button>
     </section>
+
+    <div id="catalogModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-header">
+                <h2>Catálogo de Precios</h2>
+                <p style="text-align: center; color: #888; font-size: 0.8rem; margin-bottom: 15px;">*Precios sujetos a cambio. Consultar disponibilidad.</p>
+            </div>
+
+            <button class="accordion-btn">SAMSUNG</button>
+            <div class="panel">
+                <table class="price-table">
+                    <tr><td>A01 / A01 Core</td><td class="price-col">$30 - $33</td></tr>
+                    <tr><td>A10 / A10s</td><td class="price-col">$30</td></tr>
+                    <tr><td>A11 / A12</td><td class="price-col">$35 - $37</td></tr>
+                    <tr><td>A13 / A14 / A21s</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>A30 / A31 / A32 / A51</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>S20 / S21 / S22 Series</td><td class="price-col">Cotizar</td></tr>
+                </table>
+            </div>
+
+            <button class="accordion-btn">IPHONE</button>
+            <div class="panel">
+                <table class="price-table">
+                    <tr><td>iPhone 6 / 6s / 7 / 8</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>iPhone X / XS / XR</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>iPhone 11 / 11 Pro</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>iPhone 12 / 12 Pro / Pro Max</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>iPhone 13 / 14 / 15 Series</td><td class="price-col">Cotizar</td></tr>
+                </table>
+            </div>
+
+            <button class="accordion-btn">XIAOMI & REDMI</button>
+            <div class="panel">
+                <table class="price-table">
+                    <tr><td>Redmi 9 / 9A / 9C / 10C</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>Redmi Note 8 / 9 / 10 / 11</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>Poco X3 / X4 / F3</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>Redmi 12 / 13C</td><td class="price-col">Consultar</td></tr>
+                </table>
+            </div>
+
+            <button class="accordion-btn">MOTOROLA</button>
+            <div class="panel">
+                <table class="price-table">
+                    <tr><td>Moto E7 / E20 / E40</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>Moto G10 / G20 / G30</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>Moto G50 / G60 / G100</td><td class="price-col">Consultar</td></tr>
+                </table>
+            </div>
+
+            <button class="accordion-btn">HUAWEI & HONOR</button>
+            <div class="panel">
+                <table class="price-table">
+                    <tr><td>Y6 / Y7 / Y9 Series</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>Nova 9 / Y70 / Y90</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>Honor X6 / X7 / X8 / X9</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>Honor Magic 5 Lite</td><td class="price-col">Consultar</td></tr>
+                </table>
+            </div>
+
+            <button class="accordion-btn">OTRAS MARCAS (Nokia, LG, Infinix)</button>
+            <div class="panel">
+                <table class="price-table">
+                    <tr><td>Infinix Hot 10 / Note 10 / 30</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>Nokia C Series / G Series</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>LG K50 / K51 / K61</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>TCL 20 / 30 Series</td><td class="price-col">Consultar</td></tr>
+                </table>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="CATALOGO DE PRECIO DE PANTALLA DE INFINITY STORE.pdf" download style="color: var(--accent-blue); text-decoration: underline; font-size: 0.9rem;">
+                    <i class="fas fa-file-pdf"></i> Descargar PDF Completo
+                </a>
+            </div>
+        </div>
+    </div>
 
     <section class="section">
         <h2 class="section-title">Nuestros Servicios</h2>
@@ -247,20 +405,16 @@
 
     <section class="contacto" id="contacto">
         <h2>Contáctanos</h2>
-        <p style="color: #888; margin-bottom: 20px;">Cotiza tu repuesto enviándonos el modelo exacto.</p>
-        
         <div class="address-box">
             <i class="fas fa-map-marker-alt" style="color: var(--accent-yellow); font-size: 1.5rem;"></i>
             <p style="margin-top: 10px; font-weight: 600; color: white;">
                 Frente a Pollo Campero de Unicentro Soyapango,<br>San Salvador
             </p>
         </div>
-
         <div class="contact-links">
             <a href="https://wa.me/50373222201"><i class="fab fa-whatsapp" style="color: #25D366;"></i> +503 7322 2201</a>
             <a href="mailto:infinitystoreacs@gmail.com"><i class="fas fa-envelope" style="color: var(--accent-blue);"></i> infinitystoreacs@gmail.com</a>
         </div>
-        
         <div class="socials">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
@@ -268,35 +422,51 @@
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2024 Infinity Store. Expertos en Reparaciones y Accesorios.</p>
-    </footer>
+    <footer><p>&copy; 2024 Infinity Store. Expertos en Reparaciones.</p></footer>
 
     <script>
-        // Scroll Automático Lento
+        // --- 1. SCRIPT DEL MODAL (CATÁLOGO) ---
+        var modal = document.getElementById("catalogModal");
+        var btn = document.getElementById("openCatalogBtn");
+        var span = document.getElementsByClassName("close-btn")[0];
+
+        btn.onclick = function() { modal.style.display = "block"; }
+        span.onclick = function() { modal.style.display = "none"; }
+        window.onclick = function(event) {
+            if (event.target == modal) { modal.style.display = "none"; }
+        }
+
+        // --- 2. SCRIPT DEL ACORDEÓN ---
+        var acc = document.getElementsByClassName("accordion-btn");
+        var i;
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                } 
+            });
+        }
+
+        // --- 3. SCROLL AUTOMÁTICO ---
         function autoScroll(id) {
             const container = document.getElementById(id);
-            let scrollAmount = 0;
-            let step = 1; 
-
+            let scrollAmount = 0; let step = 1;
             function scrollStep() {
                 container.scrollLeft += step;
-                if (container.scrollLeft >= (container.scrollWidth - container.clientWidth)) {
-                    container.scrollLeft = 0;
-                }
+                if (container.scrollLeft >= (container.scrollWidth - container.clientWidth)) container.scrollLeft = 0;
             }
-
-            let interval = setInterval(scrollStep, 35); // Velocidad suave
-
+            let interval = setInterval(scrollStep, 35);
             container.addEventListener('mouseover', () => clearInterval(interval));
             container.addEventListener('touchstart', () => clearInterval(interval));
             container.addEventListener('mouseout', () => interval = setInterval(scrollStep, 35));
             container.addEventListener('touchend', () => interval = setInterval(scrollStep, 35));
         }
-
         autoScroll('scroll1');
         autoScroll('scroll2');
     </script>
-
 </body>
 </html>
