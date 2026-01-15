@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- COLORES BASADOS EN EL LOGO --- */
+        /* --- COLORES --- */
         :root {
             --bg-dark: #000000;       
             --bg-card: #111111;       
@@ -57,188 +57,125 @@
         }
         .whatsapp-top:hover { transform: scale(1.05); background: white; }
 
-        /* --- HERO --- */
+        /* --- HERO (FONDO 2) --- */
         .hero { 
-            padding: 60px 20px; 
+            padding: 80px 20px; 
             text-align: center; 
-            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(20,20,20,1) 100%);
+            /* AQUÍ ESTÁ EL CAMBIO DE IMAGEN: fondo2.png */
+            /* Se agrega un degradado negro transparente para que se lea el texto */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('fondo2.png');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid #333;
         }
         .hero h1 { 
-            font-size: 2.2rem; 
+            font-size: 2.5rem; 
             color: var(--accent-yellow); 
             margin-bottom: 15px; 
-            text-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
         }
         .hero p { 
-            font-size: 1.1rem; 
+            font-size: 1.2rem; 
             color: var(--accent-blue);
             font-weight: 600;
             max-width: 800px;
             margin: 0 auto 30px auto;
+            text-shadow: 1px 1px 5px black;
         }
 
         /* BOTÓN DEL CATÁLOGO */
         .btn-catalogo {
             display: inline-block;
-            background: transparent;
-            border: 2px solid var(--accent-blue);
-            color: var(--accent-blue);
+            background: rgba(0,0,0,0.6);
+            border: 2px solid var(--accent-yellow);
+            color: var(--accent-yellow);
             padding: 12px 30px;
             font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
             font-size: 1rem;
-            box-shadow: 0 0 10px rgba(0, 191, 255, 0.2);
+            box-shadow: 0 0 10px rgba(255, 235, 59, 0.3);
             transition: 0.3s;
         }
         .btn-catalogo:hover {
-            background: var(--accent-blue);
+            background: var(--accent-yellow);
             color: black;
-            box-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
+            box-shadow: 0 0 20px rgba(255, 235, 59, 0.6);
         }
 
-        /* --- MODAL (VENTANA EMERGENTE) --- */
+        /* --- MODAL (CATÁLOGO) --- */
         .modal {
-            display: none; /* Oculto por defecto */
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            overflow: auto; /* Permite scroll si es muy largo */
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9); overflow: auto;
         }
-        
         .modal-content {
-            background-color: #1a1a1a;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid var(--accent-yellow);
-            width: 90%;
-            max-width: 800px;
-            border-radius: 10px;
-            position: relative;
-            animation: slideDown 0.4s;
+            background-color: #1a1a1a; margin: 5% auto; padding: 20px; border: 1px solid var(--accent-yellow);
+            width: 90%; max-width: 800px; border-radius: 10px; position: relative; animation: slideDown 0.4s;
         }
-
-        @keyframes slideDown {
-            from { top: -100px; opacity: 0; }
-            to { top: 0; opacity: 1; }
-        }
-
-        .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+        @keyframes slideDown { from { top: -100px; opacity: 0; } to { top: 0; opacity: 1; } }
+        .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
         .close-btn:hover { color: var(--accent-yellow); }
 
-        .modal-header h2 {
-            color: var(--accent-yellow);
-            text-align: center;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
-        }
-
-        /* ACORDEÓN DE CATEGORÍAS */
         .accordion-btn {
-            background-color: #222;
-            color: white;
-            cursor: pointer;
-            padding: 15px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            font-size: 1.1rem;
-            transition: 0.4s;
-            border-bottom: 1px solid #333;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background-color: #222; color: white; cursor: pointer; padding: 15px; width: 100%; border: none;
+            text-align: left; outline: none; font-size: 1.1rem; transition: 0.4s; border-bottom: 1px solid #333;
+            font-weight: 600; display: flex; justify-content: space-between; align-items: center;
         }
-        .accordion-btn:hover, .accordion-btn.active {
-            background-color: #333;
-            color: var(--accent-blue);
-        }
-        .accordion-btn:after {
-            content: '\002B'; /* Signo mas */
-            color: var(--accent-yellow);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        .accordion-btn.active:after {
-            content: "\2212"; /* Signo menos */
-        }
-
-        .panel {
-            padding: 0 15px;
-            background-color: #111;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.2s ease-out;
-            border-left: 2px solid var(--accent-blue);
-        }
-
-        .price-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-            font-size: 0.9rem;
-        }
-        .price-table th, .price-table td {
-            text-align: left;
-            padding: 10px;
-            border-bottom: 1px solid #333;
-        }
-        .price-table th { color: var(--accent-yellow); }
-        .price-table td { color: #ccc; }
-        .price-col { text-align: right; color: var(--accent-blue) !important; font-weight: bold; }
+        .accordion-btn.active, .accordion-btn:hover { background-color: #333; color: var(--accent-blue); }
+        .panel { padding: 0 15px; background-color: #111; max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out; }
+        
+        .price-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9rem; }
+        .price-table td { padding: 10px; border-bottom: 1px solid #333; color: #ccc; }
+        .price-col { text-align: right; color: var(--accent-yellow) !important; font-weight: bold; }
 
         /* --- SECCIONES GENERALES --- */
         .section { padding: 50px 5%; max-width: 1200px; margin: 0 auto; }
-        
         .section-title { 
-            margin-bottom: 30px; 
-            font-size: 1.6rem; 
-            color: var(--accent-yellow);
-            border-left: 5px solid var(--accent-blue);
-            padding-left: 15px;
+            margin-bottom: 30px; font-size: 1.6rem; color: var(--accent-yellow);
+            border-left: 5px solid var(--accent-blue); padding-left: 15px;
         }
 
         /* --- SERVICIOS --- */
-        .ofrecemos-list { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 20px; 
-        }
+        .ofrecemos-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .ofrecemos-item { 
-            background: var(--bg-card); 
-            padding: 25px; 
-            border-radius: 12px; 
-            border: 1px solid #222;
-            transition: 0.3s;
+            background: var(--bg-card); padding: 25px; border-radius: 12px; border: 1px solid #222; transition: 0.3s;
         }
         .ofrecemos-item:hover { border-color: var(--accent-blue); }
         .ofrecemos-item i { color: var(--accent-blue); font-size: 2rem; margin-bottom: 15px; display: block; }
         .ofrecemos-item h3 { font-size: 1.1rem; color: white; margin-bottom: 10px; }
         .ofrecemos-item p { font-size: 0.9rem; color: #aaa; }
 
-        /* --- SCROLL --- */
+        /* --- SCROLL DE IMÁGENES (MODIFICADO: Sin texto, pegadas con línea) --- */
         .scroll-container {
-            display: flex; overflow-x: auto; gap: 20px; padding: 20px 5px; scrollbar-width: none;
+            display: flex; 
+            overflow-x: auto; 
+            gap: 0; /* Sin espacio entre ellas */
+            padding: 20px 0; 
+            scrollbar-width: none;
         }
         .scroll-container::-webkit-scrollbar { display: none; }
+        
         .product-card {
-            min-width: 200px; background: var(--bg-card); border-radius: 15px; overflow: hidden; flex-shrink: 0; border: 1px solid #333;
+            min-width: 180px; 
+            background: black; 
+            border-radius: 0; /* Cuadradas */
+            overflow: hidden; 
+            flex-shrink: 0; 
+            position: relative;
+            /* Línea separadora a la derecha */
+            border-right: 1px solid var(--accent-yellow);
         }
-        .product-card img { width: 100%; height: 200px; object-fit: cover; }
-        .product-card p { padding: 10px; text-align: center; font-weight: 700; color: white; font-size: 0.9rem; }
+        
+        .product-card:first-child { border-left: 1px solid var(--accent-yellow); }
+
+        .product-card img { 
+            width: 100%; 
+            height: 200px; 
+            object-fit: cover; 
+            display: block;
+            transition: opacity 0.3s;
+        }
+        .product-card img:hover { opacity: 0.8; }
 
         /* --- CONTACTO --- */
         .contacto { background: #050505; padding: 60px 20px; text-align: center; border-top: 2px solid var(--accent-blue); }
@@ -261,84 +198,76 @@
     <section class="hero">
         <h1>Infinity Store</h1>
         <p>Expertos en Pantallas, Reparaciones y Accesorios en Soyapango</p>
-        
         <button id="openCatalogBtn" class="btn-catalogo">
-            <i class="fas fa-list-ul"></i> Ver Catálogo de Pantallas
+            <i class="fas fa-list-ul"></i> Ver Lista de Precios
         </button>
     </section>
 
     <div id="catalogModal" class="modal">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
-            <div class="modal-header">
-                <h2>Catálogo de Precios</h2>
-                <p style="text-align: center; color: #888; font-size: 0.8rem; margin-bottom: 15px;">*Precios sujetos a cambio. Consultar disponibilidad.</p>
+            <div style="text-align: center; padding-bottom: 15px; border-bottom: 1px solid #333;">
+                <h2 style="color: var(--accent-yellow);">Catálogo de Pantallas</h2>
+                <p style="font-size: 0.8rem; color: #888;">Precios $111 = Cotizar al WhatsApp</p>
             </div>
 
             <button class="accordion-btn">SAMSUNG</button>
             <div class="panel">
                 <table class="price-table">
-                    <tr><td>A01 / A01 Core</td><td class="price-col">$30 - $33</td></tr>
-                    <tr><td>A10 / A10s</td><td class="price-col">$30</td></tr>
-                    <tr><td>A11 / A12</td><td class="price-col">$35 - $37</td></tr>
-                    <tr><td>A13 / A14 / A21s</td><td class="price-col">Consultar</td></tr>
-                    <tr><td>A30 / A31 / A32 / A51</td><td class="price-col">Consultar</td></tr>
-                    <tr><td>S20 / S21 / S22 Series</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Series A16 / A17</td><td class="price-col">$11</td></tr>
+                    <tr><td>Series A20 / A21 / A22 / A23</td><td class="price-col">$11</td></tr>
+                    <tr><td>Series A30 - A36</td><td class="price-col">$11</td></tr>
+                    <tr><td>Series A51 - A73</td><td class="price-col">$11</td></tr>
+                    <tr><td>Series S20 / S21</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Series S22 / S23 / S24</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>A15 4G / 5G</td><td class="price-col">$65</td></tr>
+                    <tr><td>A01 / A10</td><td class="price-col">$30</td></tr>
                 </table>
             </div>
 
             <button class="accordion-btn">IPHONE</button>
             <div class="panel">
                 <table class="price-table">
-                    <tr><td>iPhone 6 / 6s / 7 / 8</td><td class="price-col">Consultar</td></tr>
-                    <tr><td>iPhone X / XS / XR</td><td class="price-col">Consultar</td></tr>
-                    <tr><td>iPhone 11 / 11 Pro</td><td class="price-col">Consultar</td></tr>
-                    <tr><td>iPhone 12 / 12 Pro / Pro Max</td><td class="price-col">Consultar</td></tr>
-                    <tr><td>iPhone 13 / 14 / 15 Series</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>iPhone 6 / 6s / 7 / 8</td><td class="price-col">$11</td></tr>
+                    <tr><td>iPhone X / XS / XR</td><td class="price-col">$11</td></tr>
+                    <tr><td>iPhone 11 / 12 / 13 (Normal)</td><td class="price-col">$11</td></tr>
+                    <tr><td>iPhone 11/12/13 Pro Max</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>iPhone 14 / 15 Series</td><td class="price-col">Cotizar</td></tr>
                 </table>
             </div>
 
             <button class="accordion-btn">XIAOMI & REDMI</button>
             <div class="panel">
                 <table class="price-table">
-                    <tr><td>Redmi 9 / 9A / 9C / 10C</td><td class="price-col">Consultar</td></tr>
-                    <tr><td>Redmi Note 8 / 9 / 10 / 11</td><td class="price-col">Consultar</td></tr>
-                    <tr><td>Poco X3 / X4 / F3</td><td class="price-col">Consultar</td></tr>
-                    <tr><td>Redmi 12 / 13C</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>Redmi 9 / 10 / 12 Series</td><td class="price-col">$11</td></tr>
+                    <tr><td>Redmi Note 8 / 9 / 10 / 11</td><td class="price-col">$11</td></tr>
+                    <tr><td>Redmi Note 12 Pro / 13 / 14</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Poco X4 / X5 Pro</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Poco M3 / M5 / F4 / F5</td><td class="price-col">$11</td></tr>
                 </table>
             </div>
 
             <button class="accordion-btn">MOTOROLA</button>
             <div class="panel">
                 <table class="price-table">
-                    <tr><td>Moto E7 / E20 / E40</td><td class="price-col">Consultar</td></tr>
-                    <tr><td>Moto G10 / G20 / G30</td><td class="price-col">Consultar</td></tr>
-                    <tr><td>Moto G50 / G60 / G100</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>Moto E Series (E7, E20, E40)</td><td class="price-col">$11</td></tr>
+                    <tr><td>Moto G Series (G10 - G73)</td><td class="price-col">$11</td></tr>
+                    <tr><td>Moto Edge Series</td><td class="price-col">$11</td></tr>
                 </table>
             </div>
 
-            <button class="accordion-btn">HUAWEI & HONOR</button>
+            <button class="accordion-btn">HONOR & HUAWEI</button>
             <div class="panel">
                 <table class="price-table">
-                    <tr><td>Y6 / Y7 / Y9 Series</td><td class="price-col">Consultar</td></tr>
-                    <tr><td>Nova 9 / Y70 / Y90</td><td class="price-col">Consultar</td></tr>
-                    <tr><td>Honor X6 / X7 / X8 / X9</td><td class="price-col">Consultar</td></tr>
-                    <tr><td>Honor Magic 5 Lite</td><td class="price-col">Consultar</td></tr>
-                </table>
-            </div>
-
-            <button class="accordion-btn">OTRAS MARCAS (Nokia, LG, Infinix)</button>
-            <div class="panel">
-                <table class="price-table">
-                    <tr><td>Infinix Hot 10 / Note 10 / 30</td><td class="price-col">Consultar</td></tr>
-                    <tr><td>Nokia C Series / G Series</td><td class="price-col">Consultar</td></tr>
-                    <tr><td>LG K50 / K51 / K61</td><td class="price-col">Consultar</td></tr>
-                    <tr><td>TCL 20 / 30 Series</td><td class="price-col">Consultar</td></tr>
+                    <tr><td>Huawei Y6 / Y7 / Y9</td><td class="price-col">$11</td></tr>
+                    <tr><td>Honor X5 / X6 / X7 / X8</td><td class="price-col">$11</td></tr>
+                    <tr><td>Honor 70 / 90</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Honor Magic Series</td><td class="price-col">$11</td></tr>
                 </table>
             </div>
             
             <div style="text-align: center; margin-top: 20px;">
-                <a href="CATALOGO DE PRECIO DE PANTALLA DE INFINITY STORE.pdf" download style="color: var(--accent-blue); text-decoration: underline; font-size: 0.9rem;">
+                <a href="CATALOGO DE PRECIO DE PANTALLA DE INFINITY STORE.pdf" download style="color: var(--accent-blue); font-size: 0.9rem;">
                     <i class="fas fa-file-pdf"></i> Descargar PDF Completo
                 </a>
             </div>
@@ -350,23 +279,23 @@
         <div class="ofrecemos-list">
             <div class="ofrecemos-item">
                 <i class="fas fa-mobile-alt"></i>
-                <h3>Cambio de Pantallas</h3>
-                <p>Instalación profesional de displays y pantallas para tu celular.</p>
+                <h3>Pantallas</h3>
+                <p>Cambio profesional de displays.</p>
             </div>
             <div class="ofrecemos-item">
                 <i class="fas fa-tools"></i>
-                <h3>Reparaciones Confiables</h3>
-                <p>Solución a fallas de carga, baterías, micrófonos y más.</p>
+                <h3>Reparación</h3>
+                <p>Centros de carga, baterías y más.</p>
             </div>
             <div class="ofrecemos-item">
                 <i class="fas fa-unlock-alt"></i>
-                <h3>Liberaciones y Desbloqueos</h3>
-                <p>Servicio técnico para desbloquear tu dispositivo móvil.</p>
+                <h3>Desbloqueos</h3>
+                <p>Liberaciones de red y cuentas.</p>
             </div>
             <div class="ofrecemos-item">
                 <i class="fas fa-headphones"></i>
-                <h3>Venta de Accesorios</h3>
-                <p>Audífonos Bluetooth, fundas, protectores, cables y gadgets.</p>
+                <h3>Accesorios</h3>
+                <p>Todo para tu celular.</p>
             </div>
         </div>
     </section>
@@ -374,32 +303,32 @@
     <section class="section">
         <h2 class="section-title" style="color: white;">Anillos y Cachuchas</h2>
         <div class="scroll-container" id="scroll1">
-            <div class="product-card"><img src="image1.png" alt="Anillo"> <p>Anillo Estilo 1</p></div>
-            <div class="product-card"><img src="image2.png" alt="Anillo"> <p>Anillo Estilo 2</p></div>
-            <div class="product-card"><img src="image3.png" alt="Anillo"> <p>Anillo Estilo 3</p></div>
-            <div class="product-card"><img src="image4.png" alt="Anillo"> <p>Anillo Estilo 4</p></div>
-            <div class="product-card"><img src="image5.png" alt="Anillo"> <p>Anillo Estilo 5</p></div>
-            <div class="product-card"><img src="image6.png" alt="Cachucha"> <p>Gorra Urbana</p></div>
-            <div class="product-card"><img src="image7.png" alt="Cachucha"> <p>Gorra Plana</p></div>
-            <div class="product-card"><img src="image8.png" alt="Cachucha"> <p>Gorra Deportiva</p></div>
-            <div class="product-card"><img src="image9.png" alt="Cachucha"> <p>Gorra Fashion</p></div>
-            <div class="product-card"><img src="image10.png" alt="Cachucha"> <p>Gorra Básica</p></div>
+            <div class="product-card"><img src="image1.png" alt="Img"></div>
+            <div class="product-card"><img src="image2.png" alt="Img"></div>
+            <div class="product-card"><img src="image3.png" alt="Img"></div>
+            <div class="product-card"><img src="image4.png" alt="Img"></div>
+            <div class="product-card"><img src="image5.png" alt="Img"></div>
+            <div class="product-card"><img src="image6.png" alt="Img"></div>
+            <div class="product-card"><img src="image7.png" alt="Img"></div>
+            <div class="product-card"><img src="image8.png" alt="Img"></div>
+            <div class="product-card"><img src="image9.png" alt="Img"></div>
+            <div class="product-card"><img src="image10.png" alt="Img"></div>
         </div>
     </section>
 
     <section class="section">
         <h2 class="section-title" style="color: white;">Gadgets y Tecnología</h2>
         <div class="scroll-container" id="scroll2">
-            <div class="product-card"><img src="image11.png" alt="Tech"> <p>Audífonos Bluetooth</p></div>
-            <div class="product-card"><img src="image12.png" alt="Tech"> <p>Cargador Rápido</p></div>
-            <div class="product-card"><img src="image13.png" alt="Tech"> <p>Smartwatch</p></div>
-            <div class="product-card"><img src="image14.png" alt="Tech"> <p>Funda Protectora</p></div>
-            <div class="product-card"><img src="image15.png" alt="Tech"> <p>Cable USB Tipo C</p></div>
-            <div class="product-card"><img src="image16.png" alt="Tech"> <p>Vidrio Templado</p></div>
-            <div class="product-card"><img src="image17.png" alt="Tech"> <p>Parlante Portátil</p></div>
-            <div class="product-card"><img src="image18.png" alt="Tech"> <p>Power Bank</p></div>
-            <div class="product-card"><img src="image19.png" alt="Tech"> <p>Soporte Auto</p></div>
-            <div class="product-card"><img src="image20.png" alt="Tech"> <p>Memoria USB</p></div>
+            <div class="product-card"><img src="image11.png" alt="Img"></div>
+            <div class="product-card"><img src="image12.png" alt="Img"></div>
+            <div class="product-card"><img src="image13.png" alt="Img"></div>
+            <div class="product-card"><img src="image14.png" alt="Img"></div>
+            <div class="product-card"><img src="image15.png" alt="Img"></div>
+            <div class="product-card"><img src="image16.png" alt="Img"></div>
+            <div class="product-card"><img src="image17.png" alt="Img"></div>
+            <div class="product-card"><img src="image18.png" alt="Img"></div>
+            <div class="product-card"><img src="image19.png" alt="Img"></div>
+            <div class="product-card"><img src="image20.png" alt="Img"></div>
         </div>
     </section>
 
@@ -425,36 +354,29 @@
     <footer><p>&copy; 2024 Infinity Store. Expertos en Reparaciones.</p></footer>
 
     <script>
-        // --- 1. SCRIPT DEL MODAL (CATÁLOGO) ---
+        // SCRIPT MODAL
         var modal = document.getElementById("catalogModal");
         var btn = document.getElementById("openCatalogBtn");
         var span = document.getElementsByClassName("close-btn")[0];
-
         btn.onclick = function() { modal.style.display = "block"; }
         span.onclick = function() { modal.style.display = "none"; }
-        window.onclick = function(event) {
-            if (event.target == modal) { modal.style.display = "none"; }
-        }
+        window.onclick = function(event) { if (event.target == modal) modal.style.display = "none"; }
 
-        // --- 2. SCRIPT DEL ACORDEÓN ---
+        // SCRIPT ACORDEON
         var acc = document.getElementsByClassName("accordion-btn");
-        var i;
-        for (i = 0; i < acc.length; i++) {
+        for (var i = 0; i < acc.length; i++) {
             acc[i].addEventListener("click", function() {
                 this.classList.toggle("active");
                 var panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                } 
+                if (panel.style.maxHeight) panel.style.maxHeight = null;
+                else panel.style.maxHeight = panel.scrollHeight + "px";
             });
         }
 
-        // --- 3. SCROLL AUTOMÁTICO ---
+        // SCRIPT SCROLL AUTOMÁTICO
         function autoScroll(id) {
             const container = document.getElementById(id);
-            let scrollAmount = 0; let step = 1;
+            let step = 1;
             function scrollStep() {
                 container.scrollLeft += step;
                 if (container.scrollLeft >= (container.scrollWidth - container.clientWidth)) container.scrollLeft = 0;
