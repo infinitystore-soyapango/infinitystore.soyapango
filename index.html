@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Store | Unicentro Soyapango</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="toast">Próximamente...</div>
+
+    <header>
+        <div class="logo"><img src="imagenes/infinity1.png" alt="Infinity Store Logo"></div>
+        <a href="https://wa.me/50373222201" class="whatsapp-top">
+            <i class="fab fa-whatsapp"></i> Cotizar
+        </a>
+    </header>
+
+    <section class="hero">
+        <h1>Infinity Store</h1>
+        <p>Expertos en Pantallas, Reparaciones y Accesorios en Soyapango</p>
+        
+        <div class="hero-buttons">
+            <button id="openCatalogBtn" class="btn-catalogo">
+                <i class="fas fa-mobile"></i> Precios Pantallas
+            </button>
+            
+            <button id="openServicesBtn" class="btn-catalogo btn-secondary">
+                <i class="fas fa-tools"></i> Lista de Reparaciones
+            </button>
+        </div>
+    </section>
+
+    <div id="catalogModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-screen">&times;</span>
+            <div class="modal-header-custom">
+                <h2>Catálogo de Pantallas</h2>
+                <p>*Precios sujetos a cambios.</p>
+            </div>
+
+            <button class="accordion-btn">SAMSUNG</button>
+            <div class="panel">
+                <table class="price-table">
+                    <tr><td>A01 / A10 / A10s</td><td class="price-col">$30</td></tr>
+                    <tr><td>A01 Core</td><td class="price-col">$33</td></tr>
+                    <tr><td>A02 / A02s / A03 / A03s</td><td class="price-col">$35</td></tr>
+                    <tr><td>A03 Core / A04 / A04e</td><td class="price-col">$35</td></tr>
+                    <tr><td>A04s</td><td class="price-col">$37</td></tr>
+                    <tr><td>A10e</td><td class="price-col">$30</td></tr>
+                    <tr><td>A11</td><td class="price-col">$35</td></tr>
+                    <tr><td>A12 / A13 / A13 5G</td><td class="price-col">$37</td></tr>
+                    <tr><td>A14 4G / 5G</td><td class="price-col">$37</td></tr>
+                    <tr><td>A15 4G / 5G</td><td class="price-col">$65</td></tr>
+                    <tr><td>A16 4G / 5G</td><td class="price-col">$11</td></tr>
+                    <tr><td>A17 4G</td><td class="price-col">$11</td></tr>
+                    <tr><td>A17 5G</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>A20 / A21 / A22 / A23</td><td class="price-col">$11</td></tr>
+                    <tr><td>A30 / A31 / A32</td><td class="price-col">$11</td></tr>
+                    <tr><td>A50 / A51 / A52 / A53</td><td class="price-col">$11</td></tr>
+                    <tr><td>A70 - A73</td><td class="price-col">$11</td></tr>
+                    <tr><td>S20 / S21 / S22 Series</td><td class="price-col">Cotizar</td></tr>
+                </table>
+            </div>
+
+            <button class="accordion-btn">IPHONE</button>
+            <div class="panel">
+                <table class="price-table">
+                    <tr><td>iPhone 6 / 7 / 8 (Plus)</td><td class="price-col">$11</td></tr>
+                    <tr><td>iPhone X / XS / XR</td><td class="price-col">$11</td></tr>
+                    <tr><td>iPhone 11 / 11 Pro</td><td class="price-col">$11</td></tr>
+                    <tr><td>iPhone 11 Pro Max</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>iPhone 12 / 13 Series</td><td class="price-col">$11</td></tr>
+                    <tr><td>iPhone 12/13 Pro Max</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>iPhone 14 / 15 Series</td><td class="price-col">Cotizar</td></tr>
+                </table>
+            </div>
+
+            <button class="accordion-btn">XIAOMI & POCO</button>
+            <div class="panel">
+                <table class="price-table">
+                    <tr><td>Redmi 9 / 10 / 12 / 13 Series</td><td class="price-col">$11</td></tr>
+                    <tr><td>Redmi Note 8 / 9 / 10 / 11</td><td class="price-col">$11</td></tr>
+                    <tr><td>Redmi Note 12 Pro / 13 Pro</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Poco C / M / X Series</td><td class="price-col">$11</td></tr>
+                    <tr><td>Poco F Series</td><td class="price-col">Cotizar</td></tr>
+                </table>
+            </div>
+
+            <button class="accordion-btn">MOTOROLA & OTROS</button>
+            <div class="panel">
+                <table class="price-table">
+                    <tr><td>Moto E / G Series</td><td class="price-col">$11</td></tr>
+                    <tr><td>Moto Edge Series</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Honor X Series / Lite</td><td class="price-col">$11</td></tr>
+                    <tr><td>Honor 70 / 90 / Magic</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Infinix Hot / Note / Smart</td><td class="price-col">$11</td></tr>
+                </table>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="infinitystoreprecios.pdf" download="infinitystoreprecios.pdf" style="color: var(--accent-blue); font-size: 0.9rem;">
+                    <i class="fas fa-file-pdf"></i> Descargar PDF Completo
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="servicesModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn close-service">&times;</span>
+            <div class="modal-header-custom">
+                <h2 style="color: var(--accent-blue);">Lista de Reparaciones</h2>
+                <p>*Precios estimados. Cotizar modelo exacto.</p>
+            </div>
+
+            <button class="accordion-btn">BATERÍAS</button>
+            <div class="panel">
+                <table class="price-table">
+                    <tr><td>Samsung Gama Baja</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Samsung Gama Media/Alta</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>iPhone Condición 100%</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Xiaomi / Huawei</td><td class="price-col">Cotizar</td></tr>
+                </table>
+            </div>
+
+            <button class="accordion-btn">CENTROS DE CARGA</button>
+            <div class="panel">
+                <table class="price-table">
+                    <tr><td>Mantenimiento / Limpieza</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Cambio Pin V8 (Micro USB)</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Cambio Pin Tipo C</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Placa de carga completa</td><td class="price-col">Cotizar</td></tr>
+                </table>
+            </div>
+
+            <button class="accordion-btn">SOFTWARE & DESBLOQUEO</button>
+            <div class="panel">
+                <table class="price-table">
+                    <tr><td>Cuenta Google (FRP)</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Flasheo / Reinstalar Sistema</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Liberación de Red</td><td class="price-col">Cotizar</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <section class="section">
+        <h2 class="section-title">Nuestros Servicios</h2>
+        <div class="ofrecemos-list">
+            <div class="ofrecemos-item">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Pantallas</h3>
+                <p>Cambio profesional de displays.</p>
+            </div>
+            <div class="ofrecemos-item">
+                <i class="fas fa-tools"></i>
+                <h3>Reparación</h3>
+                <p>Centros de carga, baterías y más.</p>
+            </div>
+            <div class="ofrecemos-item">
+                <i class="fas fa-unlock-alt"></i>
+                <h3>Desbloqueos</h3>
+                <p>Liberaciones de red y cuentas.</p>
+            </div>
+            <div class="ofrecemos-item">
+                <i class="fas fa-headphones"></i>
+                <h3>Accesorios</h3>
+                <p>Todo para tu celular.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title" style="color: white;">Anillos y Cachuchas</h2>
+        <div class="scroll-container" id="scroll1">
+            <div class="product-card"><img src="imagenes/1.png" alt="Img"></div>
+            <div class="product-card"><img src="imagenes/2.png" alt="Img"></div>
+            <div class="product-card"><img src="imagenes/3.png" alt="Img"></div>
+            <div class="product-card"><img src="imagenes/4.png" alt="Img"></div>
+            <div class="product-card"><img src="imagenes/5.png" alt="Img"></div>
+            <div class="product-card"><img src="imagenes/6.png" alt="Img"></div>
+            <div class="product-card"><img src="imagenes/7.png" alt="Img"></div>
+            <div class="product-card"><img src="imagenes/8.png" alt="Img"></div>
+            </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title" style="color: white;">Gadgets y Tecnología</h2>
+        <div class="scroll-container" id="scroll2">
+            <div class="product-card"><img src="imagenes/11.png" alt="Img"></div>
+            <div class="product-card"><img src="imagenes/12.png" alt="Img"></div>
+            <div class="product-card"><img src="imagenes/13.png" alt="Img"></div>
+            <div class="product-card"><img src="imagenes/14.png" alt="Img"></div>
+            <div class="product-card"><img src="imagenes/15.png" alt="Img"></div>
+            <div class="product-card"><img src="imagenes/16.png" alt="Img"></div>
+            <div class="product-card"><img src="imagenes/17.png" alt="Img"></div>
+            <div class="product-card"><img src="imagenes/18.png" alt="Img"></div>
+            <div class="product-card"><img src="imagenes/19.png" alt="Img"></div>
+            <div class="product-card"><img src="imagenes/20.png" alt="Img"></div>
+        </div>
+    </section>
+
+    <section class="contacto" id="contacto">
+        <h2>Contáctanos</h2>
+        <div class="address-box">
+            <i class="fas fa-map-marker-alt" style="color: var(--accent-yellow); font-size: 1.5rem;"></i>
+            <p style="margin-top: 10px; font-weight: 600; color: white;">
+                Frente a Pollo Campero de Unicentro Soyapango,<br>San Salvador
+            </p>
+        </div>
+        <div class="contact-links">
+            <a href="https://wa.me/50373222201"><i class="fab fa-whatsapp" style="color: #25D366;"></i> +503 7322 2201</a>
+            <a href="mailto:infinitystoreacs@gmail.com"><i class="fas fa-envelope" style="color: var(--accent-blue);"></i> infinitystoreacs@gmail.com</a>
+        </div>
+        <div class="socials">
+            <a href="https://www.facebook.com/share/1BCi9d2ELa/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="coming-soon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="coming-soon"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </section>
+
+    <footer><p>&copy; 2024 Infinity Store. Expertos en Reparaciones.</p></footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
