@@ -61,8 +61,6 @@
         .hero { 
             padding: 80px 20px; 
             text-align: center; 
-            /* AQUÍ ESTÁ EL CAMBIO DE IMAGEN: fondo2.png */
-            /* Se agrega un degradado negro transparente para que se lea el texto */
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('fondo2.png');
             background-size: cover;
             background-position: center;
@@ -128,6 +126,31 @@
         .price-table td { padding: 10px; border-bottom: 1px solid #333; color: #ccc; }
         .price-col { text-align: right; color: var(--accent-yellow) !important; font-weight: bold; }
 
+        /* --- NOTIFICACIÓN TOAST --- */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: var(--accent-yellow);
+            text-align: center;
+            border-radius: 5px;
+            padding: 16px;
+            position: fixed;
+            z-index: 3000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-size: 1rem;
+            box-shadow: 0 0 10px rgba(255, 235, 59, 0.3);
+            border: 1px solid var(--accent-yellow);
+        }
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 4.5s;
+        }
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
         /* --- SECCIONES GENERALES --- */
         .section { padding: 50px 5%; max-width: 1200px; margin: 0 auto; }
         .section-title { 
@@ -145,11 +168,11 @@
         .ofrecemos-item h3 { font-size: 1.1rem; color: white; margin-bottom: 10px; }
         .ofrecemos-item p { font-size: 0.9rem; color: #aaa; }
 
-        /* --- SCROLL DE IMÁGENES (MODIFICADO: Sin texto, pegadas con línea) --- */
+        /* --- SCROLL DE IMÁGENES --- */
         .scroll-container {
             display: flex; 
             overflow-x: auto; 
-            gap: 0; /* Sin espacio entre ellas */
+            gap: 0;
             padding: 20px 0; 
             scrollbar-width: none;
         }
@@ -158,14 +181,12 @@
         .product-card {
             min-width: 180px; 
             background: black; 
-            border-radius: 0; /* Cuadradas */
+            border-radius: 0; 
             overflow: hidden; 
             flex-shrink: 0; 
             position: relative;
-            /* Línea separadora a la derecha */
             border-right: 1px solid var(--accent-yellow);
         }
-        
         .product-card:first-child { border-left: 1px solid var(--accent-yellow); }
 
         .product-card img { 
@@ -181,12 +202,14 @@
         .contacto { background: #050505; padding: 60px 20px; text-align: center; border-top: 2px solid var(--accent-blue); }
         .address-box { background: #111; padding: 20px; border-radius: 10px; margin: 20px auto; max-width: 600px; border: 1px solid var(--accent-yellow); }
         .contact-links a { display: block; margin: 15px auto; font-size: 1.1rem; color: white; max-width: 400px; padding: 12px; border-radius: 10px; background: #222; }
-        .socials a { display: inline-flex; justify-content: center; align-items: center; width: 45px; height: 45px; margin: 10px; font-size: 1.3rem; color: black; background: var(--accent-yellow); border-radius: 50%; }
+        .socials a { display: inline-flex; justify-content: center; align-items: center; width: 45px; height: 45px; margin: 10px; font-size: 1.3rem; color: black; background: var(--accent-yellow); border-radius: 50%; cursor: pointer; }
 
         footer { text-align: center; padding: 30px; background: black; color: #555; font-size: 0.8rem; }
     </style>
 </head>
 <body>
+
+    <div id="toast">Próximamente...</div>
 
     <header>
         <div class="logo"><img src="infinity1.png" alt="Infinity Store Logo"></div>
@@ -208,61 +231,115 @@
             <span class="close-btn">&times;</span>
             <div style="text-align: center; padding-bottom: 15px; border-bottom: 1px solid #333;">
                 <h2 style="color: var(--accent-yellow);">Catálogo de Pantallas</h2>
-                <p style="font-size: 0.8rem; color: #888;">Precios $111 = Cotizar al WhatsApp</p>
+                <p style="font-size: 0.8rem; color: #888;">*Precios sujetos a cambios. Consultar disponibilidad.</p>
             </div>
 
             <button class="accordion-btn">SAMSUNG</button>
             <div class="panel">
                 <table class="price-table">
-                    <tr><td>Series A16 / A17</td><td class="price-col">$11</td></tr>
-                    <tr><td>Series A20 / A21 / A22 / A23</td><td class="price-col">$11</td></tr>
-                    <tr><td>Series A30 - A36</td><td class="price-col">$11</td></tr>
-                    <tr><td>Series A51 - A73</td><td class="price-col">$11</td></tr>
-                    <tr><td>Series S20 / S21</td><td class="price-col">Cotizar</td></tr>
-                    <tr><td>Series S22 / S23 / S24</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>A01 / A10 / A10s</td><td class="price-col">$30</td></tr>
+                    <tr><td>A01 Core</td><td class="price-col">$33</td></tr>
+                    <tr><td>A02 / A02s / A03 / A03s</td><td class="price-col">$35</td></tr>
+                    <tr><td>A03 Core / A04 / A04e</td><td class="price-col">$35</td></tr>
+                    <tr><td>A04s</td><td class="price-col">$37</td></tr>
+                    <tr><td>A10e</td><td class="price-col">$30</td></tr>
+                    <tr><td>A11</td><td class="price-col">$35</td></tr>
+                    <tr><td>A12 / A13 / A13 5G</td><td class="price-col">$37</td></tr>
+                    <tr><td>A14 4G / 5G</td><td class="price-col">$37</td></tr>
                     <tr><td>A15 4G / 5G</td><td class="price-col">$65</td></tr>
-                    <tr><td>A01 / A10</td><td class="price-col">$30</td></tr>
+                    <tr><td>A16 4G / 5G</td><td class="price-col">$11</td></tr>
+                    <tr><td>A17 4G</td><td class="price-col">$11</td></tr>
+                    <tr><td>A17 5G</td><td class="price-col">Cotizar</td></tr> <tr><td>A20 / A20s / A21 / A21s</td><td class="price-col">$11</td></tr>
+                    <tr><td>A22 4G / 5G / A23</td><td class="price-col">$11</td></tr>
+                    <tr><td>A30 / A30s / A31 / A32</td><td class="price-col">$11</td></tr>
+                    <tr><td>A50 / A51 / A52 / A53</td><td class="price-col">$11</td></tr>
+                    <tr><td>A70 / A71 / A72 / A73</td><td class="price-col">$11</td></tr>
+                    <tr><td>S20 / S21 Series</td><td class="price-col">Cotizar</td></tr> <tr><td>S22 / S23 / S24 Series</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Note 10 / 20 Series</td><td class="price-col">Cotizar</td></tr>
                 </table>
             </div>
 
             <button class="accordion-btn">IPHONE</button>
             <div class="panel">
                 <table class="price-table">
-                    <tr><td>iPhone 6 / 6s / 7 / 8</td><td class="price-col">$11</td></tr>
-                    <tr><td>iPhone X / XS / XR</td><td class="price-col">$11</td></tr>
-                    <tr><td>iPhone 11 / 12 / 13 (Normal)</td><td class="price-col">$11</td></tr>
-                    <tr><td>iPhone 11/12/13 Pro Max</td><td class="price-col">Cotizar</td></tr>
-                    <tr><td>iPhone 14 / 15 Series</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>iPhone 6 / 6s / 6 Plus</td><td class="price-col">$11</td></tr>
+                    <tr><td>iPhone 7 / 7 Plus</td><td class="price-col">$11</td></tr>
+                    <tr><td>iPhone 8 / 8 Plus</td><td class="price-col">$11</td></tr>
+                    <tr><td>iPhone X / XS / XR / XS Max</td><td class="price-col">$11</td></tr>
+                    <tr><td>iPhone 11 / 11 Pro</td><td class="price-col">$11</td></tr>
+                    <tr><td>iPhone 11 Pro Max</td><td class="price-col">Cotizar</td></tr> <tr><td>iPhone 12 / 12 Pro / 12 Mini</td><td class="price-col">$11</td></tr>
+                    <tr><td>iPhone 12 Pro Max</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>iPhone 13 / 13 Pro / 13 Mini</td><td class="price-col">$11</td></tr>
+                    <tr><td>iPhone 13 Pro Max</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>iPhone 14 / 14 Plus / Pro / Max</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>iPhone 15 Series</td><td class="price-col">Cotizar</td></tr>
                 </table>
             </div>
 
-            <button class="accordion-btn">XIAOMI & REDMI</button>
+            <button class="accordion-btn">XIAOMI & POCO</button>
             <div class="panel">
                 <table class="price-table">
-                    <tr><td>Redmi 9 / 10 / 12 Series</td><td class="price-col">$11</td></tr>
-                    <tr><td>Redmi Note 8 / 9 / 10 / 11</td><td class="price-col">$11</td></tr>
-                    <tr><td>Redmi Note 12 Pro / 13 / 14</td><td class="price-col">Cotizar</td></tr>
-                    <tr><td>Poco X4 / X5 Pro</td><td class="price-col">Cotizar</td></tr>
-                    <tr><td>Poco M3 / M5 / F4 / F5</td><td class="price-col">$11</td></tr>
+                    <tr><td>Redmi 9 / 9A / 9C / 9T</td><td class="price-col">$11</td></tr>
+                    <tr><td>Redmi 10 / 10A / 10C</td><td class="price-col">$11</td></tr>
+                    <tr><td>Redmi 12 / 12C / 13C</td><td class="price-col">$11</td></tr>
+                    <tr><td>Redmi Note 8 / 8 Pro</td><td class="price-col">$11</td></tr>
+                    <tr><td>Redmi Note 9 / 9S / 9 Pro</td><td class="price-col">$11</td></tr>
+                    <tr><td>Redmi Note 10 / 10s / 10 Pro</td><td class="price-col">$11</td></tr>
+                    <tr><td>Redmi Note 11 / 11s / 11 Pro</td><td class="price-col">$11</td></tr>
+                    <tr><td>Redmi Note 12 4G/5G</td><td class="price-col">$11</td></tr>
+                    <tr><td>Redmi Note 12 Pro / Pro+</td><td class="price-col">Cotizar</td></tr> <tr><td>Redmi Note 13 Series</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Poco C40 / C50 / C65</td><td class="price-col">$11</td></tr>
+                    <tr><td>Poco M3 / M4 / M5</td><td class="price-col">$11</td></tr>
+                    <tr><td>Poco X3 / X3 Pro / X4 / X5</td><td class="price-col">$11</td></tr>
+                    <tr><td>Poco F3 / F4 / F5</td><td class="price-col">Cotizar</td></tr>
+                </table>
+            </div>
+
+            <button class="accordion-btn">INFINIX - TECNO - ITEL</button>
+            <div class="panel">
+                <table class="price-table">
+                    <tr><td>Infinix Smart 6 / 7 / 8 / 9</td><td class="price-col">$11</td></tr>
+                    <tr><td>Infinix Hot 10 / 11 / 12 / 20 / 30</td><td class="price-col">$11</td></tr>
+                    <tr><td>Infinix Note 10 / 11 / 12 / 30</td><td class="price-col">$11</td></tr>
+                    <tr><td>Infinix Note 40 / 40 Pro</td><td class="price-col">Cotizar</td></tr> <tr><td>Infinix Zero Series</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Tecno Spark 6 / 7 / 8 / 10 / 20</td><td class="price-col">$11</td></tr>
+                    <tr><td>Tecno Pova 2 / 3 / 4 / 5</td><td class="price-col">$11</td></tr>
+                    <tr><td>Tecno Pop 5 / 6 / 7</td><td class="price-col">$11</td></tr>
+                    <tr><td>Tecno Camon Series</td><td class="price-col">Cotizar</td></tr>
+                    <tr><td>Itel P36 / P37 / A58</td><td class="price-col">$11</td></tr>
                 </table>
             </div>
 
             <button class="accordion-btn">MOTOROLA</button>
             <div class="panel">
                 <table class="price-table">
-                    <tr><td>Moto E Series (E7, E20, E40)</td><td class="price-col">$11</td></tr>
-                    <tr><td>Moto G Series (G10 - G73)</td><td class="price-col">$11</td></tr>
-                    <tr><td>Moto Edge Series</td><td class="price-col">$11</td></tr>
+                    <tr><td>Moto E6 / E7 / E20 / E30 / E40</td><td class="price-col">$11</td></tr>
+                    <tr><td>Moto G7 / G8 / G9 Series</td><td class="price-col">$11</td></tr>
+                    <tr><td>Moto G10 / G20 / G30 / G50 / G60</td><td class="price-col">$11</td></tr>
+                    <tr><td>Moto G22 / G32 / G42 / G52 / G72</td><td class="price-col">$11</td></tr>
+                    <tr><td>Moto G13 / G23 / G53 / G73</td><td class="price-col">$11</td></tr>
+                    <tr><td>Moto Edge 20 / 30 / 40</td><td class="price-col">Cotizar</td></tr>
                 </table>
             </div>
 
             <button class="accordion-btn">HONOR & HUAWEI</button>
             <div class="panel">
                 <table class="price-table">
-                    <tr><td>Huawei Y6 / Y7 / Y9</td><td class="price-col">$11</td></tr>
-                    <tr><td>Honor X5 / X6 / X7 / X8</td><td class="price-col">$11</td></tr>
-                    <tr><td>Honor 70 / 90</td><td class="price-col">Cotizar</td></tr>
-                    <tr><td>Honor Magic Series</td><td class="price-col">$11</td></tr>
+                    <tr><td>Huawei Y5 / Y6 / Y7 / Y9 Series</td><td class="price-col">$11</td></tr>
+                    <tr><td>Honor X5 / X6 / X7 / X8 / X9</td><td class="price-col">$11</td></tr>
+                    <tr><td>Honor 50 / 70 / 90 Lite</td><td class="price-col">$11</td></tr>
+                    <tr><td>Honor 70 / 90 5G / Magic 5</td><td class="price-col">Cotizar</td></tr> <tr><td>Huawei Nova 9 / 10 / 11</td><td class="price-col">Cotizar</td></tr>
+                </table>
+            </div>
+
+            <button class="accordion-btn">ZTE - NOKIA - TCL</button>
+            <div class="panel">
+                <table class="price-table">
+                    <tr><td>ZTE Blade A3 / A5 / A7 / V20 / V30</td><td class="price-col">$11</td></tr>
+                    <tr><td>ZTE Blade V40 / V50</td><td class="price-col">$11</td></tr>
+                    <tr><td>Nokia C10 / C20 / C30</td><td class="price-col">$11</td></tr>
+                    <tr><td>Nokia G10 / G20 / G50</td><td class="price-col">$11</td></tr>
+                    <tr><td>TCL 20 / 30 Series</td><td class="price-col">$11</td></tr>
                 </table>
             </div>
             
@@ -345,16 +422,32 @@
             <a href="mailto:infinitystoreacs@gmail.com"><i class="fas fa-envelope" style="color: var(--accent-blue);"></i> infinitystoreacs@gmail.com</a>
         </div>
         <div class="socials">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.facebook.com/share/1BCi9d2ELa/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="coming-soon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="coming-soon"><i class="fab fa-tiktok"></i></a>
         </div>
     </section>
 
     <footer><p>&copy; 2024 Infinity Store. Expertos en Reparaciones.</p></footer>
 
     <script>
-        // SCRIPT MODAL
+        // --- 1. SCRIPT DE NOTIFICACIÓN (TOAST) ---
+        function showToast() {
+            var x = document.getElementById("toast");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+        }
+
+        // Asignar evento a los botones "Próximamente"
+        var comingSoonBtns = document.querySelectorAll(".coming-soon");
+        comingSoonBtns.forEach(btn => {
+            btn.addEventListener("click", function(e) {
+                e.preventDefault(); // Evita que recargue la página
+                showToast();
+            });
+        });
+
+        // --- 2. SCRIPT MODAL ---
         var modal = document.getElementById("catalogModal");
         var btn = document.getElementById("openCatalogBtn");
         var span = document.getElementsByClassName("close-btn")[0];
@@ -362,7 +455,7 @@
         span.onclick = function() { modal.style.display = "none"; }
         window.onclick = function(event) { if (event.target == modal) modal.style.display = "none"; }
 
-        // SCRIPT ACORDEON
+        // --- 3. SCRIPT ACORDEON ---
         var acc = document.getElementsByClassName("accordion-btn");
         for (var i = 0; i < acc.length; i++) {
             acc[i].addEventListener("click", function() {
@@ -373,7 +466,7 @@
             });
         }
 
-        // SCRIPT SCROLL AUTOMÁTICO
+        // --- 4. SCRIPT SCROLL AUTOMÁTICO ---
         function autoScroll(id) {
             const container = document.getElementById(id);
             let step = 1;
