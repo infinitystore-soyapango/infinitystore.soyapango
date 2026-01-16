@@ -1,0 +1,224 @@
+/* --- COLORES --- */
+:root {
+    --bg-dark: #000000;       
+    --bg-card: #111111;       
+    --accent-yellow: #FFFF00; 
+    --accent-blue: #00BFFF;   
+    --text-light: #E0E0E0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { 
+    font-family: 'Montserrat', sans-serif; 
+    background-color: var(--bg-dark); 
+    color: var(--text-light); 
+    line-height: 1.6; 
+    overflow-x: hidden;
+}
+
+h1, h2, h3 { text-transform: uppercase; letter-spacing: 1px; }
+a { text-decoration: none; transition: 0.3s; }
+ul { list-style: none; }
+
+/* --- HEADER --- */
+header { 
+    background: rgba(0, 0, 0, 0.95);
+    padding: 15px 5%; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    border-bottom: 2px solid var(--accent-yellow);
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; 
+    backdrop-filter: blur(10px);
+}
+.logo img { height: 60px; width: auto; }
+
+.whatsapp-top { 
+    background: var(--accent-yellow); 
+    color: black; 
+    padding: 8px 15px; 
+    border-radius: 30px; 
+    font-weight: 800; 
+    font-size: 0.8rem; 
+    box-shadow: 0 0 15px rgba(255, 255, 0, 0.4);
+}
+.whatsapp-top:hover { transform: scale(1.05); background: white; }
+
+/* --- HERO (FONDO ACTUALIZADO A CARPETA) --- */
+.hero { 
+    padding: 80px 20px; 
+    text-align: center; 
+    /* Ruta actualizada */
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('imagenes/fondo2.png');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid #333;
+}
+.hero h1 { 
+    font-size: 2.5rem; 
+    color: var(--accent-yellow); 
+    margin-bottom: 15px; 
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+}
+.hero p { 
+    font-size: 1.2rem; 
+    color: var(--accent-blue);
+    font-weight: 600;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+    text-shadow: 1px 1px 5px black;
+}
+
+/* CONTENEDOR DE BOTONES HERO */
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* ESTILO DE LOS BOTONES */
+.btn-catalogo {
+    display: inline-block;
+    background: rgba(0,0,0,0.6);
+    border: 2px solid var(--accent-yellow);
+    color: var(--accent-yellow);
+    padding: 12px 30px;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 0 10px rgba(255, 235, 59, 0.3);
+    transition: 0.3s;
+}
+.btn-catalogo:hover {
+    background: var(--accent-yellow);
+    color: black;
+    box-shadow: 0 0 20px rgba(255, 235, 59, 0.6);
+}
+/* Botón secundario (Azul) para diferenciar */
+.btn-secondary {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+}
+.btn-secondary:hover {
+    background: var(--accent-blue);
+    color: black;
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
+}
+
+/* --- MODAL (VENTANAS EMERGENTES) --- */
+.modal {
+    display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9); overflow: auto;
+}
+.modal-content {
+    background-color: #1a1a1a; margin: 5% auto; padding: 20px; border: 1px solid var(--accent-yellow);
+    width: 90%; max-width: 800px; border-radius: 10px; position: relative; animation: slideDown 0.4s;
+}
+@keyframes slideDown { from { top: -100px; opacity: 0; } to { top: 0; opacity: 1; } }
+
+.modal-header-custom {
+    text-align: center; padding-bottom: 15px; border-bottom: 1px solid #333;
+}
+.modal-header-custom h2 { color: var(--accent-yellow); }
+.modal-header-custom p { font-size: 0.8rem; color: #888; }
+
+.close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+.close-btn:hover { color: var(--accent-yellow); }
+
+.accordion-btn {
+    background-color: #222; color: white; cursor: pointer; padding: 15px; width: 100%; border: none;
+    text-align: left; outline: none; font-size: 1.1rem; transition: 0.4s; border-bottom: 1px solid #333;
+    font-weight: 600; display: flex; justify-content: space-between; align-items: center;
+}
+.accordion-btn.active, .accordion-btn:hover { background-color: #333; color: var(--accent-blue); }
+.panel { padding: 0 15px; background-color: #111; max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out; }
+
+.price-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9rem; }
+.price-table td { padding: 10px; border-bottom: 1px solid #333; color: #ccc; }
+.price-col { text-align: right; color: var(--accent-yellow) !important; font-weight: bold; }
+
+/* --- NOTIFICACIÓN TOAST --- */
+#toast {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #333;
+    color: var(--accent-yellow);
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px;
+    position: fixed;
+    z-index: 3000;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    box-shadow: 0 0 10px rgba(255, 235, 59, 0.3);
+    border: 1px solid var(--accent-yellow);
+}
+#toast.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 4.5s;
+}
+@keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+@keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+/* --- SECCIONES GENERALES --- */
+.section { padding: 50px 5%; max-width: 1200px; margin: 0 auto; }
+.section-title { 
+    margin-bottom: 30px; font-size: 1.6rem; color: var(--accent-yellow);
+    border-left: 5px solid var(--accent-blue); padding-left: 15px;
+}
+
+/* --- SERVICIOS --- */
+.ofrecemos-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.ofrecemos-item { 
+    background: var(--bg-card); padding: 25px; border-radius: 12px; border: 1px solid #222; transition: 0.3s;
+}
+.ofrecemos-item:hover { border-color: var(--accent-blue); }
+.ofrecemos-item i { color: var(--accent-blue); font-size: 2rem; margin-bottom: 15px; display: block; }
+.ofrecemos-item h3 { font-size: 1.1rem; color: white; margin-bottom: 10px; }
+.ofrecemos-item p { font-size: 0.9rem; color: #aaa; }
+
+/* --- SCROLL DE IMÁGENES --- */
+.scroll-container {
+    display: flex; 
+    overflow-x: auto; 
+    gap: 0;
+    padding: 20px 0; 
+    scrollbar-width: none;
+}
+.scroll-container::-webkit-scrollbar { display: none; }
+
+.product-card {
+    min-width: 180px; 
+    background: black; 
+    border-radius: 0; 
+    overflow: hidden; 
+    flex-shrink: 0; 
+    position: relative;
+    border-right: 1px solid var(--accent-yellow);
+}
+.product-card:first-child { border-left: 1px solid var(--accent-yellow); }
+
+.product-card img { 
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
+    display: block;
+    transition: opacity 0.3s;
+}
+.product-card img:hover { opacity: 0.8; }
+
+/* --- CONTACTO --- */
+.contacto { background: #050505; padding: 60px 20px; text-align: center; border-top: 2px solid var(--accent-blue); }
+.address-box { background: #111; padding: 20px; border-radius: 10px; margin: 20px auto; max-width: 600px; border: 1px solid var(--accent-yellow); }
+.contact-links a { display: block; margin: 15px auto; font-size: 1.1rem; color: white; max-width: 400px; padding: 12px; border-radius: 10px; background: #222; }
+.socials a { display: inline-flex; justify-content: center; align-items: center; width: 45px; height: 45px; margin: 10px; font-size: 1.3rem; color: black; background: var(--accent-yellow); border-radius: 50%; cursor: pointer; }
+
+footer { text-align: center; padding: 30px; background: black; color: #555; font-size: 0.8rem; }
